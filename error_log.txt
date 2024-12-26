@@ -1,0 +1,29 @@
+[22-Sep-2024 06:42:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::fetchAll() in C:\wamp64\www\HOP\print_list.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\wamp64\www\HOP\print_list.php on line 19
+[22-Sep-2024 06:42:34 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::fetchAll() in C:\wamp64\www\HOP\print_list.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\wamp64\www\HOP\print_list.php on line 19
+[22-Sep-2024 06:42:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::fetchAll() in C:\wamp64\www\HOP\print_list.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\wamp64\www\HOP\print_list.php on line 19
+[22-Sep-2024 06:44:24 UTC] PHP Warning:  Undefined variable $db_host in C:\wamp64\www\HOP\print_list.php on line 112
+[22-Sep-2024 06:44:24 UTC] PHP Stack trace:
+[22-Sep-2024 06:44:24 UTC] PHP   1. {main}() C:\wamp64\www\HOP\print_list.php:0
+[22-Sep-2024 06:44:24 UTC] PHP Warning:  Undefined variable $db_user in C:\wamp64\www\HOP\print_list.php on line 112
+[22-Sep-2024 06:44:24 UTC] PHP Stack trace:
+[22-Sep-2024 06:44:24 UTC] PHP   1. {main}() C:\wamp64\www\HOP\print_list.php:0
+[22-Sep-2024 06:44:24 UTC] PHP Warning:  Undefined variable $db_password in C:\wamp64\www\HOP\print_list.php on line 112
+[22-Sep-2024 06:44:24 UTC] PHP Stack trace:
+[22-Sep-2024 06:44:24 UTC] PHP   1. {main}() C:\wamp64\www\HOP\print_list.php:0
+[22-Sep-2024 06:44:24 UTC] PHP Warning:  Undefined variable $db_name in C:\wamp64\www\HOP\print_list.php on line 112
+[22-Sep-2024 06:44:24 UTC] PHP Stack trace:
+[22-Sep-2024 06:44:24 UTC] PHP   1. {main}() C:\wamp64\www\HOP\print_list.php:0
+[22-Sep-2024 06:44:24 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user ''@'localhost' (using password: NO) in C:\wamp64\www\HOP\print_list.php on line 112
+[22-Sep-2024 06:44:24 UTC] PHP Stack trace:
+[22-Sep-2024 06:44:24 UTC] PHP   1. {main}() C:\wamp64\www\HOP\print_list.php:0
+[22-Sep-2024 06:44:24 UTC] PHP   2. mysqli->__construct($hostname = NULL, $username = NULL, $password = NULL, $database = NULL) C:\wamp64\www\HOP\print_list.php:112
+[22-Sep-2024 06:44:24 UTC] Database connection failed: Access denied for user ''@'localhost' (using password: NO)
