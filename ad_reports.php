@@ -201,7 +201,7 @@ include_once('load_session.php');
             </div>
             <div class="card-body">
                 <!-- Form for Filtering Data -->
-                <form action="preview.php" method="post">
+                <form action="preview.php?dept=<?php echo $_GET['dept'] ?>" method="post">
                     <div class="row justify-content-center">
                         <div class="col-md-3">
                             <div class="form-group">

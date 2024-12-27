@@ -105,7 +105,7 @@ $mem_id = $_GET['mid'];
                 </a>
               </li>
               <li class="nav-item">
-                <a href="womens_report.php?mid=<?php echo $_GET['mid'] ?> && dept=<?php echo $_GET['dept'] ?>" class="nav-link">
+                <a href="ad_reports.php?mid=<?php echo $_GET['mid'] ?> && dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-print"></i>
                   <p>Reports</p>
                 </a>
