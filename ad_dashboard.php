@@ -101,7 +101,7 @@ switch ($department) {
                 <span class="info-box-text">Total Members</span>
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT COUNT(*) AS total FROM members WHERE department='$department' AND age > 28 OR marital_status='married' AND department='$department' ";
+                    $sql = "SELECT COUNT(*) AS total FROM members WHERE department='$department' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {

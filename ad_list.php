@@ -93,7 +93,7 @@ include_once('load_session.php');
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">welfare</a></li>
+              <li class="breadcrumb-item"><a href="#">list</a></li>
               <li class="breadcrumb-item active"><?php 
                  
             $department= $_GET['dept']; 
@@ -146,78 +146,76 @@ include_once('load_session.php');
     </thead>
     <tbody>
         <?php
-        // Define query to fetch members
-        $query = "
-            SELECT 
-                id, 
-                member_id, 
-                fullname, 
-                telephone, 
-                marital_status, 
-                age, 
-                occupation, 
-                status 
-            FROM members 
-            WHERE 
-                department = ? 
-                AND (age > ? OR marital_status = ?)
-            ORDER BY fullname ASC";
+        // Validate and sanitize department input
+        $department = isset($_GET['dept']) ? htmlspecialchars($_GET['dept']) : null;
+        $valid_departments = ['Men', 'Women', 'Youth', 'Main'];
 
-        if ($stmt = $con->prepare($query)) {
-            // Sanitize department input
-            $department = htmlspecialchars($_GET['dept']);
-            $age = 28; // Integer value
-            $marital_status = 'married';
+        if ($department && in_array($department, $valid_departments)) {
+            // Define query to fetch members
+            $query = "
+                SELECT 
+                    *
+                FROM members 
+                WHERE department = ? 
+                ORDER BY id DESC";
 
-            // Bind parameters
-            $stmt->bind_param("sis", $department, $age, $marital_status);
+            if ($stmt = $con->prepare($query)) {
+                // Bind parameters
+                $stmt->bind_param("s", $department);
 
-            // Execute the statement
-            $stmt->execute();
+                // Execute the statement
+                $stmt->execute();
 
-            // Fetch results
-            $result = $stmt->get_result();
+                // Fetch results
+                $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    // Sanitize output values to prevent XSS
-                    $id = htmlspecialchars($row['id']);
-                    $member_id = htmlspecialchars($row['member_id']);
-                    $fullname = htmlspecialchars($row['fullname']);
-                    $telephone = htmlspecialchars($row['telephone']);
-                    $marital = htmlspecialchars($row['marital_status']);
-                    $age = htmlspecialchars($row['age']);
-                    $occupation = htmlspecialchars($row['occupation']);
-                    $status = htmlspecialchars($row['status']);
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        // Sanitize output values to prevent XSS
+                        $id = $row['id'];
+                        $member_id = $row['member_id'];
+                        $fullname = $row['fullname'];
+                        $telephone = $row['telephone'];
+                        $marital = $row['marital_status'];
+                        $age = $row['age'];
+                        $occupation = $row['occupation'];
+                        $status = $row['status'];
 
-                    // Render table row
-                    echo "
-                    <tr class='text-center'>
-                        <td><a href='#' class='text-primary font-weight-bold'>$member_id</a></td>
-                        <td>$fullname</td>
-                        <td>$telephone</td>
-                        <td>$marital</td>
-                        <td>$age</td>
-                        <td>$occupation</td>
-                        <td>";
-                    if ($status === "Active") {
-                        echo "<span class='badge badge-success' data-toggle='tooltip' title='Member is Active'>$status</span>";
-                    } elseif ($status === "Pending") {
-                        echo "<span class='badge badge-warning' data-toggle='tooltip' title='Member is Pending'>$status</span>";
-                    } else {
-                        echo "<span class='badge badge-danger' data-toggle='tooltip' title='Status Error'>Error</span>";
+                        $department = $_GET['dept'];
+                        $mid = $_GET['mid'];
+
+                        // Render table row
+                        echo "
+                        <tr class='text-center'>
+                            <td><a href='ad_member_profile.php?uid=$member_id && dept=$department &mid='$mid' class='text-primary font-weight-bold'>$member_id</a></td>
+                            <td>$fullname</td>
+                            <td>$telephone</td>
+                            <td>$marital</td>
+                            <td>$age</td>
+                            <td>$occupation</td>
+                            <td>";
+                        if ($status === "Active") {
+                            echo "<span class='badge badge-success' data-toggle='tooltip' title='This member is active'>$status</span>";
+                        } elseif ($status === "Pending") {
+                            echo "<span class='badge badge-warning' data-toggle='tooltip' title='Membership is pending'>$status</span>";
+                        } else {
+                            echo "<span class='badge badge-danger' data-toggle='tooltip' title='Unrecognized status'>$status</span>";
+                        }
+                        echo "</td>
+                        </tr>";
                     }
-                    echo "</td>
-                    </tr>";
+                } else {
+                    echo "<tr><td colspan='7' class='text-center text-muted'>No records found</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='7' class='text-center text-muted'>No records found</td></tr>";
-            }
 
-            // Close the statement
-            $stmt->close();
+                // Close the statement
+                $stmt->close();
+            } else {
+                error_log("Database Error: " . $con->error);
+                echo "<tr><td colspan='7' class='text-center text-danger'>An error occurred. Please try again later.</td></tr>";
+            }
         } else {
-            echo "<script>swal('Error', 'Query preparation failed!', 'error');</script>";
+            echo "<tr><td colspan='7' class='text-center text-danger'>Invalid department selected</td></tr>";
         }
         ?>
     </tbody>

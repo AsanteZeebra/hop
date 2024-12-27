@@ -10,7 +10,7 @@ include_once('load_session.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Womens Reports</title>
+  <title> Reports</title>
   <?php include_once('head.php'); ?>
 
 </head>

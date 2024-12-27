@@ -19,10 +19,45 @@ include_once('load_session.php');
 <body class="hold-transition sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
-    <!-- Navbar -->
-    <?php include_once('navbar.php') ?>
-    <!-- /.navbar -->
-    <?php include_once('sidebar.php'); ?>
+  <?php 
+  $department = $_GET['dept'];
+  switch ($department) {
+    case 'Men':
+        include_once('navbar_men.php');
+        break;
+    case 'Women':
+        include_once('navbar_women.php');
+        break;
+    case 'Youth':
+        include_once('navbar_youth.php');
+        break;
+
+    default:
+        echo "No department specified";
+        break;
+  }
+  
+  ?>
+  <!-- /.navbar -->
+  <?php
+  $department = $_GET['dept'];
+
+  switch ($department) {
+    case 'Men':
+    include_once('mens_sidebar.php');
+        break;
+    case 'Women':
+        include_once('womens_sidebar.php');
+        break;
+        case 'Youth':
+        include_once('youth_sidebar.php');
+            break;
+    default:
+        echo "No department specified";
+        break;
+  }
+  
+ ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -60,7 +95,7 @@ include_once('load_session.php');
 
                     <?php
 
-                    $idd = $_GET['uid'];
+                    $idd = $_GET['mid'];
 
                     $sqlc = " SELECT *  FROM members WHERE member_id='$idd'";
                     $execute = mysqli_query($con, $sqlc);
@@ -86,7 +121,7 @@ include_once('load_session.php');
 
                   <?php
                   include_once('database_connection.php');
-                  $mem_id = $_GET['uid'];
+                  $mem_id = $_GET['mid'];
                   $sql = "SELECT id,fullname,age,member_id,telephone,dob,residense_address,status,position,next_of_kin,YEAR(dob) as year,alter_call,marital_status,gender,occupation,spouse,number_of_children,city,region,postal_address,date_created from  members WHERE member_id='$mem_id' ORDER BY fullname ASC";
                   $result = mysqli_query($con, $sql);
                   if ($result) {
