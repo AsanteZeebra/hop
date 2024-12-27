@@ -3,59 +3,66 @@
 include_once('database_connection.php');
 include_once('load_session.php');
 
-// Sanitize GET parameters to prevent SQL injection
-$department = isset($_GET['dept']) ? mysqli_real_escape_string($con, $_GET['dept']) : null;
-if (!$department) {
-    die("Error: Department not specified.");
-}
 
-// Include navbar based on department
-switch ($department) {
-    case 'Men':
-        include_once('navbar_men.php');
-        break;
-    case 'Women':
-        include_once('navbar_women.php');
-        break;
-    case 'Youth':
-        include_once('navbar_youth.php');
-        break;
-    case 'Main':
-        include_once('navbar.php');
-        break;
-    default:
-        die("Error: Invalid department specified.");
-}
-
-// Include sidebar based on department
-switch ($department) {
-    case 'Men':
-        include_once('mens_sidebar.php');
-        break;
-    case 'Women':
-        include_once('womens_sidebar.php');
-        break;
-    case 'Youth':
-        include_once('youth_sidebar.php');
-        break;
-    case 'Main':
-        include_once('sidebar.php');
-        break;
-    default:
-        die("Error: Invalid department specified.");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Youth Reports</title>
+    <title> Reports</title>
     <?php include_once('head.php'); ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
     <!-- Navbar and Sidebar are already included above -->
+
+    <?php
+        $department = $_GET['dept'];
+        switch ($department) {
+            case 'Men':
+                include_once('navbar_men.php');
+                break;
+            case 'Women':
+                include_once('navbar_women.php');
+                break;
+            case 'Youth':
+                include_once('navbar_youth.php');
+                break;
+            case 'Main':
+                include_once('navbar.php');
+                break;
+            default:
+                echo "No department specified";
+                break;
+        }
+
+        ?>
+        <!-- /.navbar -->
+        <?php
+        $department = $_GET['dept'];
+
+        echo $department;
+
+        switch ($department) {
+            case 'Men':
+                include_once('mens_sidebar.php');
+                break;
+            case 'Women':
+                include_once('womens_sidebar.php');
+                break;
+            case 'Youth':
+                include_once('youth_sidebar.php');
+                break;
+            case 'Main':
+                include_once('sidebar.php');
+                break;
+            default:
+                echo "No department specified";
+                break;
+        }
+
+        ?>
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
@@ -98,7 +105,7 @@ switch ($department) {
                                     WHERE date_created BETWEEN '$from' AND '$to' 
                                       AND status = '$status'
                                       AND department = '$department'
-                                    GROUP BY month, year
+                                    
                                 ";
                                 $result = mysqli_query($con, $sql);
 
