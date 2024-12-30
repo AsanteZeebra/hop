@@ -95,7 +95,7 @@ include_once('load_session.php');
 
                     <?php
 
-                    $idd = $_GET['mid'];
+                    $idd = $_GET['uid'];
 
                     $sqlc = " SELECT *  FROM members WHERE member_id='$idd'";
                     $execute = mysqli_query($con, $sqlc);
@@ -121,7 +121,7 @@ include_once('load_session.php');
 
                   <?php
                   include_once('database_connection.php');
-                  $mem_id = $_GET['mid'];
+                  $mem_id = $_GET['uid'];
                   $sql = "SELECT id,fullname,age,member_id,telephone,dob,residense_address,status,position,next_of_kin,YEAR(dob) as year,alter_call,marital_status,gender,occupation,spouse,number_of_children,city,region,postal_address,date_created from  members WHERE member_id='$mem_id' ORDER BY fullname ASC";
                   $result = mysqli_query($con, $sql);
                   if ($result) {

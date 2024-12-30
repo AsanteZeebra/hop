@@ -146,12 +146,7 @@ include_once('load_session.php');
     </thead>
     <tbody>
         <?php
-        // Validate and sanitize department input
-        $department = isset($_GET['dept']) ? htmlspecialchars($_GET['dept']) : null;
-        $valid_departments = ['Men', 'Women', 'Youth', 'Main'];
-
-        if ($department && in_array($department, $valid_departments)) {
-            // Define query to fetch members
+     $department = $_GET['dept'];
             $query = "
                 SELECT 
                     *
@@ -181,13 +176,14 @@ include_once('load_session.php');
                         $occupation = $row['occupation'];
                         $status = $row['status'];
 
-                        $department = $_GET['dept'];
-                        $mid = $_GET['mid'];
+                       
+
+                        $idd = $_GET['mid'];
 
                         // Render table row
                         echo "
                         <tr class='text-center'>
-                            <td><a href='ad_member_profile.php?uid=$member_id && dept=$department &mid='$mid' class='text-primary font-weight-bold'>$member_id</a></td>
+                            <td><a href='ad_member_profile.php?mid=$idd &dept=$department && uid=$member_id' class='text-primary font-weight-bold'>$member_id</a></td>
                             <td>$fullname</td>
                             <td>$telephone</td>
                             <td>$marital</td>
@@ -214,9 +210,7 @@ include_once('load_session.php');
                 error_log("Database Error: " . $con->error);
                 echo "<tr><td colspan='7' class='text-center text-danger'>An error occurred. Please try again later.</td></tr>";
             }
-        } else {
-            echo "<tr><td colspan='7' class='text-center text-danger'>Invalid department selected</td></tr>";
-        }
+       
         ?>
     </tbody>
 </table>

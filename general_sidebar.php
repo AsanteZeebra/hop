@@ -13,7 +13,7 @@
 $mem_id = $_GET['mid'];
 
 
-     $sql = "SELECT file_name FROM photos WHERE member_id='$mem_id'";
+     $sql = "SELECT file_name FROM members WHERE member_id='$mem_id'";
      $run = mysqli_query($con, $sql);
      if ($run) {
        while ($row = mysqli_fetch_assoc($run)) {
@@ -45,7 +45,7 @@ $mem_id = $_GET['mid'];
       
 
      ?>  
-          <a href="mens_dashboard.php?mid=<?php echo $_GET['mid']; ?>" class="d-block"><?php echo $name; ?></a>
+          <a href="welfare.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="d-block"><?php echo $name; ?></a>
           <?php    }
                   } else {
                     echo "No Records Found";
@@ -71,7 +71,7 @@ $mem_id = $_GET['mid'];
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
-            <a href="general_welfaredash.php?mid=<?php echo $_GET['mid'] ?>" class="nav-link ">
+            <a href="welfare.php?mid=<?php echo $_GET['mid'] ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link ">
               <i class="nav-icon fas fa-home"></i>
               <p>
               
@@ -80,7 +80,7 @@ $mem_id = $_GET['mid'];
             </a>
            
             <li class="nav-item">
-                <a href="general_welfare_list.php?mid=<?php echo $_GET['mid']; ?>" class="nav-link">
+                <a href="ad_list.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-list-ol"></i>
                   <p>Welfare list</p>
                 </a>
@@ -88,19 +88,19 @@ $mem_id = $_GET['mid'];
 
              
               <li class="nav-item">
-                <a href="general_welfaredash.php?mid=<?php echo $_GET['mid']; ?>" class="nav-link">
+                <a href="general_welfaredash.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fas fa-money-bill"></i>
                   <p>Welfare</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="general_expenses.php?mid=<?php echo $_GET['mid']; ?>" class="nav-link">
+                <a href="general_expenses.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-file-invoice"></i>
                   <p>Expenses</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="welfare_reports.php?mid=<?php echo $_GET['mid'] ?>" class="nav-link">
+                <a href="welfare_reports.php?mid=<?php echo $_GET['mid'] ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-print"></i>
                   <p>Reports</p>
                 </a>

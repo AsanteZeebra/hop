@@ -19,10 +19,45 @@ include_once('load_session.php');
 <body class="hold-transition sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
-    <!-- Navbar -->
-    <?php include_once('navbar.php') ?>
-    <!-- /.navbar -->
-    <?php include_once('sidebar.php'); ?>
+  <?php 
+  $department = $_GET['dept'];
+  switch ($department) {
+    case 'Men':
+        include_once('navbar_men.php');
+        break;
+    case 'Women':
+        include_once('navbar_women.php');
+        break;
+    case 'Youth':
+        include_once('navbar_youth.php');
+        break;
+
+    default:
+        echo "No department specified";
+        break;
+  }
+  
+  ?>
+  <!-- /.navbar -->
+  <?php
+  $department = $_GET['dept'];
+
+  switch ($department) {
+    case 'Men':
+    include_once('mens_sidebar.php');
+        break;
+    case 'Women':
+        include_once('womens_sidebar.php');
+        break;
+        case 'Youth':
+        include_once('youth_sidebar.php');
+            break;
+    default:
+        echo "No department specified";
+        break;
+  }
+  
+ ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->

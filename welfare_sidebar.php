@@ -83,33 +83,33 @@ $mem_id = $_GET['mid'];
             </a>
           
             <li class="nav-item">
-                <a href="general_welfaredash.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Main" ?>" class="nav-link">
+                <a href=" welfare.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Main" ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-hand-holding-hand"></i>
                   <p>General Welfare</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="mens_warefaredash.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Men" ?>" class="nav-link">
+                <a href="welfare.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Men" ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-user-tie"></i>
                   <p>Mens's Welfare</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="womens_warefaredash.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Women" ?>" class="nav-link">
+                <a href="welfare.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo "Women" ?>" class="nav-link">
                 <i class="nav-icon fa-regular fa-user"></i>
                   <p>Women's Welfare</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="youth_dashboard.php?mid=<?php echo $_GET['mid'] ?> && dept=<?php echo "Youth" ?>" class="nav-link">
+                <a href="welfare.php?mid=<?php echo $_GET['mid'] ?> && dept=<?php echo "Youth" ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-people-roof"></i>
                   <p>Youth Welfare</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="report_warefare.php?mid=<?php echo $_GET['mid'] ?>" class="nav-link">
+                <a href="ad_reports.php?mid=<?php echo $_GET['mid'] ?>" class="nav-link">
                 <i class="nav-icon fa-solid fa-print"></i>
                   <p>Reports</p>
                 </a>
