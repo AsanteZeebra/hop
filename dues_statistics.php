@@ -32,9 +32,11 @@ include_once('load_session.php');
       <?php
 
 $mem_id = $_GET['idd'];
+$department =  $_GET['dept'];
 
+echo $department;
 
-     $sql = "SELECT COUNT(*) as mt FROM dues WHERE member_id='$mem_id' AND status='Paid'";
+     $sql = "SELECT COUNT(*) as mt FROM dues WHERE member_id='$mem_id' AND status='Paid' AND department='$department'";
      $run = mysqli_query($con, $sql);
      if ($run) {
        while ($row = mysqli_fetch_assoc($run)) {
@@ -59,8 +61,10 @@ $mem_id = $_GET['idd'];
 
 $mem_id = $_GET['idd'];
 
+$department = $_GET['dept'];
 
-     $sql = "SELECT COUNT(*) as mt FROM dues WHERE member_id='$mem_id' AND status='Unpaid'";
+
+     $sql = "SELECT COUNT(*) as mt FROM dues WHERE member_id='$mem_id' AND status='Unpaid' AND department='$department'";
      $run = mysqli_query($con, $sql);
      if ($run) {
        while ($row = mysqli_fetch_assoc($run)) {
@@ -84,7 +88,25 @@ $mem_id = $_GET['idd'];
     </ul>
   </nav>
   <!-- /.navbar -->
-  <?php include_once('sidebar.php'); ?>
+  <?php
+  $department = $_GET['dept'];
+
+  switch ($department) {
+    case 'Men':
+    include_once('mens_sidebar.php');
+        break;
+    case 'Women':
+        include_once('womens_sidebar.php');
+        break;
+        case 'Youth':
+        include_once('youth_sidebar.php');
+            break;
+    default:
+        echo "No department specified";
+        break;
+  }
+  
+ ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -131,8 +153,9 @@ $mem_id = $_GET['idd'];
 
 
        $mem_id =$_GET['idd'];
+       $department = $_GET['dept'];
 
-                $query = $con->query("SELECT year AS ys, COUNT(amount) sam FROM dues  WHERE status='Paid' AND member_id='$mem_id' GROUP BY ys ");
+                $query = $con->query("SELECT year AS ys, COUNT(amount) sam FROM dues  WHERE status='Paid' AND member_id='$mem_id' AND department='$department' GROUP BY ys ");
 
                 foreach ($query as $row) {
 
@@ -178,7 +201,8 @@ $mem_id = $_GET['idd'];
   <?php
 
                  $mem_id =$_GET['idd'];
-                $query = $con->query("SELECT COUNT(amount) AS ct, status AS st FROM dues WHERE member_id='$mem_id' GROUP BY st");
+                 $department = $_GET['dept'];
+                $query = $con->query("SELECT COUNT(amount) AS ct, status AS st FROM dues WHERE member_id='$mem_id' AND department='$department' GROUP BY st");
 
                 foreach ($query as $row) {
 
@@ -246,8 +270,9 @@ $mem_id = $_GET['idd'];
 
 $mem_id = $_GET['idd'];
 $year = date('Y');
+$department = $_GET['dept'];
 
-     $sql = "SELECT * FROM dues WHERE member_id='$mem_id' AND year='$year'";
+     $sql = "SELECT * FROM dues WHERE member_id='$mem_id' AND year='$year' AND department='$department'";
      $run = mysqli_query($con, $sql);
      if ($run) {
        while ($row = mysqli_fetch_assoc($run)) {
@@ -316,9 +341,9 @@ $year = date('Y');
 
 $mem_id = $_GET['idd'];
 $year = date('Y');
-
+$department = $_GET['dept'];
 $lastyear = $year-1;
-     $sql = "SELECT * FROM dues WHERE member_id='$mem_id' AND year='$lastyear'";
+     $sql = "SELECT * FROM dues WHERE member_id='$mem_id' AND year='$lastyear' AND department='$department'";
      $run = mysqli_query($con, $sql);
      if ($run) {
        while ($row = mysqli_fetch_assoc($run)) {

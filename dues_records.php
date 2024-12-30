@@ -47,8 +47,8 @@ switch ($department) {
    ?>
     <!-- /.navbar -->
     <?php 
-    $department = $_GET['dept'];
-    switch ($department) {
+    $dep = $_GET['dept'];
+    switch ($dep) {
         case 'Main':    
     include_once('general_sidebar.php');
             break;
@@ -257,7 +257,7 @@ $department = $_GET['dept'];
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <h3 class="card-title">Dues Payment History</h3>
-                <a href="dues_statistics.php?&idd=<?php echo $_GET['idd'] ?>&&memb=<?php echo $_GET['memb'] ?>&mid=<?php echo $_GET['mid'] ?>" class="btn btn-warning btn-sm float-right">
+                <a href="dues_statistics.php?idd=<?php echo $_GET['idd'] ?>&&memb=<?php echo $_GET['memb'] ?>&mid=<?php echo $_GET['mid'] ?>&dept=<?php echo $_GET['dept']; ?>" class="btn btn-warning btn-sm float-right">
                     <i class="fa fa-line-chart"></i> Statistics
                 </a>
                 <button class="btn btn-light btn-sm float-right mr-2" data-toggle="modal" data-target="#atmodal">

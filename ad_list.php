@@ -28,6 +28,9 @@ include_once('load_session.php');
     case 'Women':
         include_once('navbar_women.php');
         break;
+        case 'Main':
+            include_once('navbar.php');
+          break;
     case 'Youth':
         include_once('navbar_youth.php');
         break;
@@ -40,12 +43,16 @@ include_once('load_session.php');
   ?>
   <!-- /.navbar -->
   <?php
-  $department = $_GET['dept'];
+   $department = $_GET['dept'];
 
   switch ($department) {
     case 'Men':
     include_once('mens_sidebar.php');
+
         break;
+        case 'Main':
+         include_once('sidebar.php');
+          break;
     case 'Women':
         include_once('womens_sidebar.php');
         break;
@@ -72,7 +79,7 @@ include_once('load_session.php');
                 <?php
             
             
-            $department= $_GET['dept']; 
+            $department = $_GET['dept']; 
             
             switch ($department) {
                 case 'Men':
@@ -96,7 +103,7 @@ include_once('load_session.php');
               <li class="breadcrumb-item"><a href="#">list</a></li>
               <li class="breadcrumb-item active"><?php 
                  
-            $department= $_GET['dept']; 
+       echo     $department= $_GET['dept']; 
             
             switch ($department) {
                 case 'Men':
@@ -146,7 +153,7 @@ include_once('load_session.php');
     </thead>
     <tbody>
         <?php
-     $department = $_GET['dept'];
+   echo  $department = $_GET['dept'];
             $query = "
                 SELECT 
                     *
