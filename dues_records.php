@@ -174,9 +174,9 @@ $department = $_GET['dept'];
             </div>
             <div class="modal-body">
                 <form method="post" id="dues_form">
-                    <input type="hidden" class="form-control tfid" value="<?php echo $_GET['idd']; ?>">
-                    <input type="hidden" class="form-control tfname" value="<?php echo $_GET['memb']; ?>">
-                    <input type="hidden" class="form-control tfdept" value="<?php echo $_GET['dept']; ?>">
+                    <input type="" class="form-control tfid" value="<?php echo $_GET['idd']; ?>">
+                    <input type="" class="form-control tfname" value="<?php echo $_GET['memb']; ?>">
+                    <input type="" class="form-control tfdept" value="<?php echo $_GET['dept']; ?>">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
