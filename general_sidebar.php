@@ -88,7 +88,7 @@ $mem_id = $_GET['mid'];
 
              
               <li class="nav-item">
-                <a href="general_welfaredash.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
+                <a href="welfare.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fas fa-money-bill"></i>
                   <p>Welfare</p>
                 </a>

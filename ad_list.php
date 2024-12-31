@@ -103,7 +103,7 @@ include_once('load_session.php');
               <li class="breadcrumb-item"><a href="#">list</a></li>
               <li class="breadcrumb-item active"><?php 
                  
-       echo     $department= $_GET['dept']; 
+            $department= $_GET['dept']; 
             
             switch ($department) {
                 case 'Men':
@@ -144,83 +144,84 @@ include_once('load_session.php');
         <tr class="text-center">
             <th>ID</th>
             <th>Name</th>
-            <th>Telephone</th>
-            <th>Marital Status</th>
-            <th>Age</th>
-            <th>Occupation</th>
-            <th>Status</th>
+            <th>Department</th>
+            <th>Total Amount(¢)</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <?php
-   echo  $department = $_GET['dept'];
-            $query = "
-                SELECT 
-                    *
-                FROM members 
-                WHERE department = ? 
-                ORDER BY id DESC";
+        $department = $_GET['dept'] ?? '';
 
-            if ($stmt = $con->prepare($query)) {
-                // Bind parameters
-                $stmt->bind_param("s", $department);
+        // Prepare the SQL query
+        $query = "
+            SELECT 
+                id,
+                member_id, 
+                fullname, 
+                department,
+                SUM(amount) AS total
+            FROM 
+                dues
+            WHERE 
+                department = ?
+            GROUP BY 
+                member_id, fullname, department, id
+            ORDER BY 
+                id DESC";
 
-                // Execute the statement
-                $stmt->execute();
+        if ($stmt = $con->prepare($query)) {
+            // Bind parameters
+            $stmt->bind_param("s", $department);
 
-                // Fetch results
-                $result = $stmt->get_result();
+            // Execute the statement
+            $stmt->execute();
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        // Sanitize output values to prevent XSS
-                        $id = $row['id'];
-                        $member_id = $row['member_id'];
-                        $fullname = $row['fullname'];
-                        $telephone = $row['telephone'];
-                        $marital = $row['marital_status'];
-                        $age = $row['age'];
-                        $occupation = $row['occupation'];
-                        $status = $row['status'];
+            // Fetch results
+            $result = $stmt->get_result();
 
-                       
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Sanitize output values to prevent XSS
+                    $id = htmlspecialchars($row['id']);
+                    $member_id = htmlspecialchars($row['member_id']);
+                    $fullname = htmlspecialchars($row['fullname']);
+                    $department_safe = htmlspecialchars($row['department']);
+                    $amount = htmlspecialchars($row['total']);
+                    $idd = $_GET['mid'];
 
-                        $idd = $_GET['mid'];
+                    // Determine badge class based on amount
+                    $badgeClass = $amount == 0 ? 'badge-danger' : 'badge-success';
+                    $badgeText = $amount == 0 ? 'No Amount' : 'Paid';
+                    $amountFormatted = number_format($amount, 2);
 
-                        // Render table row
-                        echo "
-                        <tr class='text-center'>
-                            <td><a href='ad_member_profile.php?mid=$idd &dept=$department && uid=$member_id' class='text-primary font-weight-bold'>$member_id</a></td>
-                            <td>$fullname</td>
-                            <td>$telephone</td>
-                            <td>$marital</td>
-                            <td>$age</td>
-                            <td>$occupation</td>
-                            <td>";
-                        if ($status === "Active") {
-                            echo "<span class='badge badge-success' data-toggle='tooltip' title='This member is active'>$status</span>";
-                        } elseif ($status === "Pending") {
-                            echo "<span class='badge badge-warning' data-toggle='tooltip' title='Membership is pending'>$status</span>";
-                        } else {
-                            echo "<span class='badge badge-danger' data-toggle='tooltip' title='Unrecognized status'>$status</span>";
-                        }
-                        echo "</td>
-                        </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='7' class='text-center text-muted'>No records found</td></tr>";
+                    // Render table row
+                    echo "
+                    <tr class='text-center'>
+                        <td><a href='dues_records.php?mid=$idd&dept=$department_safe&idd=$member_id' class='text-primary font-weight-bold'>$member_id</a></td>
+                        <td>$fullname</td>
+                        <td>$department_safe</td>
+                        <td><span class='badge $badgeClass'>$amountFormatted</span> </td>
+                        <td>
+                            <a href='dues_records.php?mid=$idd&dept=$department_safe&idd=$member_id' class='btn btn-primary btn-sm' data-toggle='tooltip' title='Dues Records'><i class='fas fa-arrow-right'></i> View</a>
+                        </td>
+                    </tr>";
                 }
-
-                // Close the statement
-                $stmt->close();
             } else {
-                error_log("Database Error: " . $con->error);
-                echo "<tr><td colspan='7' class='text-center text-danger'>An error occurred. Please try again later.</td></tr>";
+                echo "<tr><td colspan='5' class='text-center text-muted'>No records found</td></tr>";
             }
-       
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            error_log("Database Error: " . $con->error);
+            echo "<tr><td colspan='5' class='text-center text-danger'>An error occurred. Please try again later.</td></tr>";
+        }
         ?>
     </tbody>
 </table>
+
+
 
 
 

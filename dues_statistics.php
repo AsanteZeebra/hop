@@ -92,6 +92,9 @@ $department = $_GET['dept'];
   $department = $_GET['dept'];
 
   switch ($department) {
+    case 'Main':
+      include_once('sidebar.php');
+      break;
     case 'Men':
     include_once('mens_sidebar.php');
         break;
