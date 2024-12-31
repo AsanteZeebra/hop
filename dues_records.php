@@ -240,10 +240,10 @@ $department = $_GET['dept'];
                 </button>
             </div>
             <div class="modal-body text-center">
-                <input type="hidden" class="form-control tfid">
-                <input type="hidden" class="form-control tfmonth">
-                <input type="hidden" class="form-control tfyear">
-                <input type="hidden" class="form-control tfdep" value="<?php echo $_GET['dept']; ?>">
+                <input type="" class="form-control tfid">
+                <input type="" class="form-control tfmonth">
+                <input type="" class="form-control tfyear">
+                <input type="" class="form-control tfdep" value="<?php echo $_GET['dept']; ?>">
                 <button class="btn btn-info" data-dismiss="modal">No</button>
                 <button class="btn btn-danger delbtn">Yes</button>
             </div>
