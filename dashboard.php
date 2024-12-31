@@ -14,7 +14,7 @@ include_once ('database_connection.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome|HOP|Dashboard|</title>
+  <title>Welcome|HOP|Dashboard|aaaaaaaaaaaaaaaa</title>
 
   <?php include_once ("head.php"); ?>
 </head>
