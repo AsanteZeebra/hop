@@ -94,7 +94,7 @@ $(function () {
       var member_id = $(".tfid").val();
       var month = $(".tfmonth").val();
       var year = $(".tfyear").val();
-      var dept = $(".tfdep").val();
+      var dept = $(".tfdept").val();
   
       fd.append("member_id", member_id);
       fd.append("year", year);
