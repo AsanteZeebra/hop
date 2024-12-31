@@ -166,7 +166,7 @@ include_once('load_session.php');
             WHERE 
                 department = ?
             GROUP BY 
-                member_id, fullname, department, id
+                member_id
             ORDER BY 
                 id DESC";
 
