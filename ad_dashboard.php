@@ -107,7 +107,7 @@ switch ($department) {
                 <span class="info-box-text">Total Members</span>
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT COUNT(*) AS total FROM dues WHERE department='$department' GROUP BY member_id,department";
+                    $sql = "SELECT COUNT(*) AS total FROM dues WHERE department='$department' GROUP BY fullname ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
