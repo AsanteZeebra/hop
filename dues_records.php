@@ -143,12 +143,7 @@ $department = $_GET['dept'];
                 </div>
               </div>
             </div>
-        <?php
-          }
-        } else {
-          echo "<div class='alert alert-warning'>No records found.</div>";
-        }
-        ?>
+     
       </div>
     </div>
   </div>
@@ -175,8 +170,14 @@ $department = $_GET['dept'];
             <div class="modal-body">
                 <form method="post" id="dues_form">
                     <input type="hidden" class="form-control tfid" value="<?php echo $_GET['idd']; ?>">
-                    <input type="hidden" class="form-control tfname" value="<?php echo $_GET['memb']; ?>">
+                    <input type="hidden" class="form-control tfname" value="<?php echo $member_name; ?>">
                     <input type="hidden" class="form-control tfdept" value="<?php echo $_GET['dept']; ?>">
+                    <?php
+          }
+        } else {
+          echo "<div class='alert alert-warning'>No records found.</div>";
+        }
+        ?>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
