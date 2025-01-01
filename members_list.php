@@ -184,7 +184,7 @@ if (!empty($photo)) {
 ?>
 
         
-        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>"><?php echo $member_id; ?></a></td>
+        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?> &&dept=Main"><?php echo $member_id; ?></a></td>
         <td><?php echo $fullname; ?> <br> <small><?php echo $age  ?> Years</small></td>
         <td><?php echo $telephone; ?></td>
         <td><?php echo $residence_address; ?></td>
@@ -205,7 +205,7 @@ if (!empty($photo)) {
         ?>
        
        
-        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Member Information"><i class="fa-regular fa-pen-to-square"></i></a>   <a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="View Member Profile"> <i class="fa-solid fa-id-card"></i></a></td>
+        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>&&dept=Main" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Member Information"><i class="fa-regular fa-pen-to-square"></i></a>   <a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="View Member Profile"> <i class="fa-solid fa-id-card"></i></a></td>
       </tr>
     
       <?php    }
