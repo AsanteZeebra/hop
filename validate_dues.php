@@ -1,4 +1,5 @@
-$(function () {
+<script>
+  $(function () {
     var Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -18,8 +19,7 @@ $(function () {
   
       // Set the values from the table row into form fields
       $('.tfid').val(data[0]);
-      $('.tfyear').val(data[2]);
-      $('.tfmonth').val(data[3]);
+    
     });
   
     // Set default submitHandler for form validation
@@ -86,53 +86,47 @@ $(function () {
       delete_dues();
     });
   
-    // Method to delete dues data
-    function delete_dues() {
-      var fd = new FormData();
-  
-      // Collect form data
-      var member_id = $(".tfid").val();
-      var month = $(".tfmonth").val();
-      var year = $(".tfyear").val();
-      var dept = $(".tfdept").val();
-  
-      fd.append("member_id", member_id);
-      fd.append("year", year);
-      fd.append("month", month);
-      fd.append("department", dept);
-  
-      $.ajax({
-        url: "delete_dues.php",
-        type: "POST",
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          if (data != 0) {
-            Toast.fire({
-              icon: "success",
-              title: data,
-            });
-            setTimeout(function() {
-              location.reload();
-            }, 1000);
-          } else {
-            Toast.fire({
-              icon: "error",
-              title: "Unable to delete data",
-            });
-          }
-        },
-        error: function (err) {
-          Swal.fire({
-            icon: 'error',
-            title: 'An error occurred',
-            text: err.responseText
-          });
-        },
+   // Method to delete dues data
+function delete_dues() {
+  var fd = new FormData();
+
+  // Collect form data
+  var id = $(".tfid").val();
+
+  fd.append("idd", id); // Change "odd" to "idd"
+
+  $.ajax({
+    url: "delete_dues.php",
+    type: "POST",
+    data: fd,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      if (data != 0) {
+        Toast.fire({
+          icon: "success",
+          title: data,
+        });
+        // setTimeout(function () {
+        //   location.reload();
+        // }, 1000);
+      } else {
+        Toast.fire({
+          icon: "error",
+          title: "Unable to delete data",
+        });
+      }
+    },
+    error: function (err) {
+      Swal.fire({
+        icon: "error",
+        title: "An error occurred",
+        text: err.responseText,
       });
-    }
-  
+    },
+  });
+}
+
     // Validate the dues form
     $("#dues_form").validate({
       rules: {
@@ -159,3 +153,4 @@ $(function () {
     });
   });
   
+</script>

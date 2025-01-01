@@ -2,15 +2,10 @@
 include_once('database_connection.php');
 
 // Check if POST data is set
-if (isset($_POST['member_id'], $_POST['month'], $_POST['year'])) {
-    $idd = mysqli_real_escape_string($con, $_POST['member_id']); // Escape input to prevent SQL injection
-    $month = mysqli_real_escape_string($con, $_POST['month']);
-    $year = mysqli_real_escape_string($con, $_POST['year']);
-    $department = mysqli_real_escape_string($con, $_POST['department']);
-
+$idd = mysqli_real_escape_string($con, $_POST['idd']);
     // Prepare the SQL statement to avoid SQL injection
-    $stmt = $con->prepare("DELETE FROM dues WHERE member_id = ? AND month = ? AND year = ? AND department = '$department'");
-    $stmt->bind_param("sss", $idd, $month, $year); // Bind parameters (s = string)
+    $stmt = $con->prepare("DELETE FROM dues WHERE id = ? ");
+    $stmt->bind_param("s", $idd); // Bind parameters (s = string)
 
     // Execute the statement and check for success
     if ($stmt->execute()) {
@@ -26,9 +21,7 @@ if (isset($_POST['member_id'], $_POST['month'], $_POST['year'])) {
 
     // Close the statement
     $stmt->close();
-} else {
-    echo "Error: Missing required parameters.";
-}
+
 
 // Close the database connection
 $con->close();

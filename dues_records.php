@@ -242,9 +242,7 @@ $department = $_GET['dept'];
             </div>
             <div class="modal-body text-center">
                 <input type="hidden" class="form-control tfid">
-                <input type="hidden" class="form-control tfmonth">
-                <input type="hidden" class="form-control tfyear">
-                <input type="hidden" class="form-control tfdep" value="<?php echo $_GET['dept']; ?>">
+               
                 <button class="btn btn-info" data-dismiss="modal">No</button>
                 <button class="btn btn-danger delbtn">Yes</button>
             </div>
@@ -269,6 +267,7 @@ $department = $_GET['dept'];
                 <table class="table  table-hover text-center" id="example1">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Year</th>
@@ -293,6 +292,7 @@ $department = $_GET['dept'];
                                     : "<span class='badge badge-danger'>Unpaid</span>";
                                 echo "
                                 <tr>
+                                    <td>{$row['id']}</td>
                                     <td>{$row['member_id']}</td>
                                     <td>{$row['fullname']}</td>
                                     <td>{$row['year']}</td>
@@ -342,7 +342,7 @@ $department = $_GET['dept'];
 
 
   <?php include_once("script.php"); ?>
-  <script src="validate_dues.js?t=12345"></script>
+  <?php include_once("validate_dues.php"); ?>
 
   <script>
   
