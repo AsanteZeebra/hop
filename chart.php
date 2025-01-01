@@ -40,7 +40,7 @@
        {
         label:'Months Paid',
          data: <?php echo json_encode($sam); ?>,
-         backgroundColor : ['#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de','#85FCE0'],
+         backgroundColor : ['#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de','#85FCE0','#67275A','#F7C59F'],
        },
 
       
