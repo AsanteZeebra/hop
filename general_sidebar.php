@@ -71,7 +71,7 @@ $mem_id = $_GET['mid'];
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
-            <a href="ad_dashbaord.php?mid=<?php echo $_GET['mid'] ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link ">
+            <a href="ad_dashboard.php?mid=<?php echo $_GET['mid'] ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link ">
               <i class="nav-icon fas fa-home"></i>
               <p>
               
