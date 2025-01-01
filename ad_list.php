@@ -29,7 +29,7 @@ include_once('load_session.php');
         include_once('navbar_women.php');
         break;
         case 'Main':
-            include_once('navbar.php');
+            include_once('navbar_general.php');
           break;
     case 'Youth':
         include_once('navbar_youth.php');
@@ -51,7 +51,7 @@ include_once('load_session.php');
 
         break;
         case 'Main':
-         include_once('sidebar.php');
+         include_once('general_sidebar.php');
           break;
     case 'Women':
         include_once('womens_sidebar.php');

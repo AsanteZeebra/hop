@@ -30,7 +30,7 @@ include_once('load_session.php');
         include_once('navbar_men.php'); 
         break;
     case 'Main':
-        include_once('general_navbar.php'); 
+        include_once('navbar_general.php'); 
         break;
     case 'Women':
     include_once('navbar_women.php'); 
