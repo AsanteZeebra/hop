@@ -107,9 +107,9 @@ function delete_dues() {
           icon: "success",
           title: data,
         });
-        // setTimeout(function () {
-        //   location.reload();
-        // }, 1000);
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
       } else {
         Toast.fire({
           icon: "error",
