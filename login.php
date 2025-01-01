@@ -49,7 +49,7 @@ if ($result && $result->num_rows == 1) {
                     header("Location: dashboard.php?mid=".urlencode($memberDetails['member_id']));
                     break;
                 case 'Warefareadmin':
-                    header("Location: general_welfaredash.php?mid=".urlencode($memberDetails['member_id'])."&& dept=Main");
+                    header("Location: ad_dashbaord.php?mid=".urlencode($memberDetails['member_id'])."&& dept=Main");
                     break;
                 case 'Womensadmin':
                     header("Location: ad_dashboard.php?mid=".urlencode($memberDetails['member_id'])."&& dept=Women");
