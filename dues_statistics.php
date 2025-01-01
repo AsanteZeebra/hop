@@ -117,7 +117,7 @@ $department = $_GET['dept'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1> <?php echo $_GET['memb'] ?> - Overall</h1>
+            <h1> Overall Statistics</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -131,6 +131,47 @@ $department = $_GET['dept'];
 
     <!-- Main content -->
     <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-outline-primary">
+          
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+               
+                    <?php
+                    $mem_id = $_GET['idd'];
+                    $department = $_GET['dept'];
+                    $sql = "SELECT SUM(amount) as total,fullname,member_id FROM dues WHERE member_id='$mem_id' AND department='$department'";
+
+                    $run = mysqli_query($con, $sql);
+                    if ($run) {
+                      while ($row = mysqli_fetch_assoc($run)) {
+                        $total = $row['total'];
+                        $name = $row['fullname'];
+                        $member_id = $row['member_id'];
+                     
+                    ?>
+                 <div >
+                 <h6><?php echo $name ?> - <?php echo $member_id ?></h6>
+                   
+                   
+                 </div>
+                
+                </div>
+                    </div>
+                    </div>
+
+                    <?php 
+                     }
+                    } else {
+                      echo "No records found";
+                    }
+                    ?>
+
+
+    </div>
 
       <!-- Default box -->
     <div class="row" >
