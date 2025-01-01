@@ -25,6 +25,9 @@ include_once('load_session.php');
     case 'Men':
         include_once('navbar_men.php');
         break;
+    case 'Main':
+        include_once('navbar.php');
+        break;
     case 'Women':
         include_once('navbar_women.php');
         break;
@@ -46,6 +49,9 @@ include_once('load_session.php');
     case 'Men':
     include_once('mens_sidebar.php');
         break;
+        case 'Main':
+         include_once('sidebar.php');
+          break;
     case 'Women':
         include_once('womens_sidebar.php');
         break;
