@@ -12,7 +12,7 @@
        {
           label: <?php echo json_encode($s) ?>,
          data: <?php echo json_encode($c); ?>,
-          backgroundColor : [ '#E44032','#00a65a', '#00c0ef', '#3c8dbc', '#d2d6de','#85FCE0'],
+          backgroundColor : [ '#00a65a','#E44032'],
        },
       
      ]

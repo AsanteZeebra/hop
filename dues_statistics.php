@@ -257,7 +257,7 @@ $department = $_GET['dept'];
                   <div class="col-md-6">
                    
 <p class=text-center>
-  <b>This Year</b>
+  <b>This Year <?php echo date('Y') ?></b>
 </p>
                     <table class='table table-hover'>
                       <thead style='background-color:#28A745;color:white'>
@@ -326,7 +326,7 @@ $department = $_GET['dept'];
                   <!-- /.col -->
                   <div class="col-md-6">
                     <p class="text-center">
-                      <strong>Last Year</strong>
+                      <strong>Last Year <?php echo date('Y')-1 ?></strong>
                     </p>
 
                    
