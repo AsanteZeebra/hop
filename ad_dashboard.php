@@ -29,6 +29,9 @@ include_once('load_session.php');
     case 'Men':
         include_once('navbar_men.php'); 
         break;
+    case 'Main':
+        include_once('general_navbar.php'); 
+        break;
     case 'Women':
     include_once('navbar_women.php'); 
         break;
@@ -50,6 +53,9 @@ $department = $_GET['dept'];
 switch ($department) {
     case 'Men':
        include_once('mens_sidebar.php');
+        break;
+    case 'Main':
+       include_once('general_sidebar.php');
         break;
     case 'Youth':
         include_once('youth_sidebar.php');
