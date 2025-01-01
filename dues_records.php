@@ -186,7 +186,7 @@ $department = $_GET['dept'];
                                     <?php 
                                         $currentYear = date('Y');
                                         echo "<option value='{$currentYear}'>{$currentYear}</option>";
-                                        for ($i = 2010; $i <= $currentYear; $i++) {
+                                        for ($i = 2008; $i <= $currentYear; $i++) {
                                             echo "<option value='{$i}'>{$i}</option>";
                                         }
                                     ?>
