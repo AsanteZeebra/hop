@@ -149,11 +149,6 @@ $department = $_GET['dept'];
   </div>
 </section>
 
-
-
-
-
-
       <!-- Main content -->
       <section class="content">
 
