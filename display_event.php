@@ -1,40 +1,24 @@
 <?php
-require 'database_connection.php';
-
-// Prepare and execute the SQL statement
-$sql = "SELECT event_name, event_start_date, event_end_date,color,start_time,end_time FROM calendar_event_master";
-$result = $con->query($sql);
-
-$events = array();
-
-// Check if the query was successful
-if ($result === false) {
-    // Handle query error
-    $response = array('error' => 'Database query failed: ' . $con->error);
-    $con->close();
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit;
-}
-
-// Fetch and format the results
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $events[] = array(
-            'title' => $row['event_name'],
-            'event_date' => $row['event_start_date'],
-            'end_date' => $row['event_end_date'],
-            'color' => $row['color'],
-            'start_time' => $row['start_time'],
-            'end_time' => $row['end_time']
-        );
-    }
-}
-
-// Close the database connection
-$con->close();
-
-// Send the JSON response
 header('Content-Type: application/json');
-echo json_encode($events);
+include_once('database_connection.php');
+
+$sql = "SELECT 
+            event_name AS title, 
+            event_start_date AS event_date, 
+            event_start_time AS start_time, 
+            event_end_date, 
+            event_end_time, 
+            '#007bff' AS color 
+        FROM calendar_event_master";
+$result = mysqli_query($con, $sql);
+
+if ($result) {
+    $events = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $events[] = $row;
+    }
+    echo json_encode($events);
+} else {
+    echo json_encode(["error" => mysqli_error($con)]);
+}
 ?>

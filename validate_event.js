@@ -6,65 +6,88 @@ $(function () {
         timer: 3000,
     });
 
-    $.validator.setDefaults({
-        submitHandler: function () {
-            save_event();
+    // Initialize FullCalendar
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,basicWeek,basicDay,listWeek'
         },
-    });
-
-    display_events();
-
-    // Display events in the calendar
-    function display_events() {
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay,listWeek'
-            },
-            events: function(start, end, timezone, callback) {
-                $.ajax({
-                    url: 'display_event.php',
-                    dataType: 'json',
-                    success: function(data) {
-                        var events = [];
-                        $.each(data, function(index, event) {
-                            events.push({
-                                title: event.title,
-                                start: event.event_date,
-                                end: event.end_date
-                            });
-                        });
-                        callback(events);
-                    },
-                    error: function (err) {
+        events: function(start, end, timezone, callback) {
+            $.ajax({
+                url: 'display_event.php',
+                dataType: 'json',
+                success: function(data) {
+                    console.log("Event data fetched:", data); // Debugging
+                    if (data.error) {
                         Toast.fire({
                             icon: "error",
-                            title: "Failed to load events: " + err.responseText,
+                            title: "Error fetching events: " + data.error,
                         });
+                        return;
                     }
-                });
-            },
-        });
-    }
 
+                    var events = [];
+                    $.each(data, function(index, event) {
+                        events.push({
+                            title: event.title,
+                            start: event.event_date + 'T' + event.start_time,
+                            end: event.event_end_date + 'T' + event.end_time,
+                            color: event.color
+                        });
+                    });
+                    callback(events); // Render events on the calendar
+                },
+                error: function(err) {
+                    Toast.fire({
+                        icon: "error",
+                        title: "Failed to load events: " + err.responseText,
+                    });
+                }
+            });
+        }
+    });
 
-   
-
-
-
-
+    // Form validation and submission
+    $("#event").validate({
+        rules: {
+            event_name: { required: true },
+            event_start_date: { required: true },
+            event_end_date: { required: true },
+            event_start_time: { required: true },
+            event_end_time: { required: true }
+        },
+        messages: {
+            event_name: { required: "Please enter the event name" },
+            event_start_date: { required: "Please enter the event start date" },
+            event_end_date: { required: "Please enter the event end date" },
+            event_start_time: { required: "Please choose event start time" },
+            event_end_time: { required: "Please choose event end time" }
+        },
+        errorElement: "span",
+        errorPlacement: function (error, element) {
+            error.addClass("invalid-feedback");
+            element.closest(".form-group").append(error);
+        },
+        highlight: function (element) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("is-invalid");
+        },
+        submitHandler: function () {
+            save_event();
+        }
+    });
 
     // Save event to the database
     function save_event() {
         var fd = new FormData();
-        var event_name = $(".tfname").val();
-        var event_start_date = $(".tfstart").val();
-        var event_end_date = $(".tfend").val();
-
-        fd.append("event_name", event_name);
-        fd.append("start_date", event_start_date);
-        fd.append("end_date", event_end_date);
+        fd.append("event", $(".tfname").val());
+        fd.append("start", $(".tfstart").val());
+        fd.append("end", $(".tfend").val());
+        fd.append("start_time", $(".tftimestart").val());
+        fd.append("end_time", $(".tftimeend").val());
 
         $.ajax({
             url: "save_event.php",
@@ -80,8 +103,10 @@ $(function () {
                         title: data,
                     });
 
-                    // Refresh events on the calendar
-                    $('#calendar').fullCalendar('refetchEvents');
+                    $('#calendar').fullCalendar('refetchEvents'); // Refresh events
+                    setTimeout(function() {
+                        location.reload(); // Reload after saving
+                    }, 1000);
                 } else {
                     Toast.fire({
                         icon: "error",
@@ -94,44 +119,7 @@ $(function () {
                     icon: "error",
                     title: "Error occurred: " + err.responseText,
                 });
-            },
+            }
         });
     }
-
-    // Form validation rules and messages
-    $("#event").validate({
-        rules: {
-            event_name: {
-                required: true,
-            },
-            event_start_date: {
-                required: true,
-            },
-            event_end_date: {
-                required: true,
-            },
-        },
-        messages: {
-            event_name: {
-                required: "Please enter the event name",
-            },
-            event_start_date: {
-                required: "Please enter the event start date",
-            },
-            event_end_date: {
-                required: "Please enter the event end date",
-            },
-        },
-        errorElement: "span",
-        errorPlacement: function (error, element) {
-            error.addClass("invalid-feedback");
-            element.closest(".form-group").append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).addClass("is-invalid");
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass("is-invalid");
-        },
-    });
 });
