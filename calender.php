@@ -89,70 +89,139 @@ include_once('load_session.php');
                 <!-- Default box -->
                 <div class="row">
 
-<!-- Event List Card -->
-<div class="col-md-3">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Upcoming Events</h5>
-        </div>
-        <div class="card-body" style="max-height: 300px; overflow-y: auto;">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include_once('database_connection.php');
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body" scrolable>
 
-                    $sql = "SELECT * FROM calendar_event_master ORDER BY event_id DESC LIMIT 7";
-                    $result = mysqli_query($con, $sql);
-                    if ($result) {
-                        while ($row = mysqli_fetch_array($result)) {
-                            $event = $row['event_name'];
-                            $startdate = $row['event_start_date'];
-                            $enddate = $row['event_end_date'];
-                            $id = $row['event_id'];
-                    ?>
-                            <tr>
-                                <td>
-                                    <b><?php echo $event; ?></b><br>
-                                    <small>Start: <?php echo $startdate; ?> | End: <?php echo $enddate; ?></small>
-                                </td>
-                                <td>
-                                    <a href="#" class="text-danger btdel" data-toggle="modal" data-target="#mdquestion">
-                                        <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                    <?php }
-                    } else {
-                        echo "<tr><td colspan='2'>No Records Found</td></tr>";
-                    } ?>
-                </tbody>
-            </table>
-            <button class="btn btn-primary btn-block mt-3" data-toggle="modal" data-target="#event_entry_modal">
-                <i class="fas fa-plus"></i> Add Event
-            </button>
-        </div>
-    </div>
-</div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                  include_once('database_connection.php');
+                  
+                  $sql = "SELECT * from  calendar_event_master ORDER BY event_id DESC LIMIT 7 ";
+                  $result = mysqli_query($con, $sql);
+                  if ($result) {
+                    while ($row = mysqli_fetch_array($result)) {
+                     
+                      $event = $row['event_name'];
+                      $startdate = $row['event_start_date'];
+                      $enddate = $row['event_end_date'];
+                      $id = $row['event_id'];
+     
+                  ?>
+                                    <tr>
+                                        <td hidden><?php echo $id ?></td>
+                                        <td><b><?php echo $event; ?></b> <br>
+                                    <small><b>Start:</b> <?php echo $startdate ?>  <b>End:</b> <?php echo $enddate ?></small>
+                                    </td>
+                                        <td><a href="#" class="fa-solid fa-trash  btdel " data-toggle='modal' data-target="#mdquestion" style="color:red"></a></td>
+                                    </tr>
+                                    <?php    }
+                  } else {
+                    echo "No Records Found";
+                  } ?>
+                                    </tbody>
+                            
+                                </table>
+                                <hr>
+<a href="" data-target="#event_entry_modal" data-toggle="modal" class="btn btn-primary btn-sm" style="float:right;">Add event</a>
+                            </div>
+                        </div>
+                    </div>
 
-<!-- Calendar Card -->
-<div class="col-md-9">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Event Calendar</h5>
-        </div>
-        <div class="card-body">
-            <div id="calendar" class="border rounded" style="height: 400px;"></div>
-        </div>
-    </div>
-</div>
-</div>
+                    <div class="col-9">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body">
+                                <div id="calendar"></div>
+                                <!-- Start popup dialog box -->
+                                <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog"
+                                    aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel">Add New Event</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="img-container">
+                                          <form method="post" id="event">
+                                          <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label for="event_name">Event name</label>
+                                                                <input type="text" name="event_name" id="event_name"
+                                                                    class="form-control tfname"
+                                                                    placeholder="Enter your event name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="event_start_date">Event start</label>
+                                                                <input type="date" name="event_start_date"
+                                                                    id="event_start_date"
+                                                                    class="form-control tfstart"
+                                                                    placeholder="Event start date">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="event_end_date">Event end</label>
+                                                                <input type="date" name="event_end_date"
+                                                                    id="event_end_date" class="form-control tfend"
+                                                                    placeholder="Event end date">
+                                                            </div>
+                                                        </div>
 
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="event_start_time">Start Time</label>
+                                                                <input type="time" name="event_start_time"
+                                                                    id="event_start_time" class="form-control tftimestart"
+                                                                    placeholder="Start Time">
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="event_end_time">End Time</label>
+                                                                <input type="time" name="event_end_time"
+                                                                    id="event_end_time" class="form-control tftimeend"
+                                                                    placeholder="End Time">
+                                                            </div>
+                                                        </div>
+
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Save Event</button>
+                                            </div>
+                                            
+                                          </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End popup dialog box -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
             </section>
             <!-- /.content -->
