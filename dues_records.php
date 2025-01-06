@@ -151,7 +151,7 @@ $department = $_GET['dept'];
 
       <!-- Main content -->
       <section class="content">
-
+      
 <!-- Modal for Dues Payment -->
 <div class="modal fade" id="atmodal">
     <div class="modal-dialog">
@@ -162,60 +162,74 @@ $department = $_GET['dept'];
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <form method="post" id="dues_form">
-                    <input type="hidden" class="form-control tfid" value="<?php echo $_GET['idd']; ?>">
-                    <input type="hidden" class="form-control tfname" value="<?php echo $member_name; ?>">
-                    <input type="hidden" class="form-control tfdept" value="<?php echo $_GET['dept']; ?>">
-                    <?php
+    <form method="post" id="dues_form">
+        <input type="hidden" class="form-control tfid" value="<?php echo $_GET['idd']; ?>">
+        <input type="hidden" class="form-control tfname" value="<?php echo $member_name; ?>">
+        <input type="hidden" class="form-control tfdept" value="<?php echo $_GET['dept']; ?>">
+        <?php
           }
         } else {
           echo "<div class='alert alert-warning'>No records found.</div>";
         }
         ?>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Year</label>
-                                <select name="year" class="form-control tfyear">
-                                    <?php 
-                                        $currentYear = date('Y');
-                                        echo "<option value='{$currentYear}'>{$currentYear}</option>";
-                                        for ($i = 2008; $i <= $currentYear; $i++) {
-                                            echo "<option value='{$i}'>{$i}</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Month</label>
-                                <select name="month" class="form-control tfmonth">
-                                    <?php
-                                        $months = [
-                                            'January', 'February', 'March', 'April', 'May', 
-                                            'June', 'July', 'August', 'September', 'October', 
-                                            'November', 'December'
-                                        ];
-                                        $currentMonth = date('F');
-                                        echo "<option value='{$currentMonth}'>{$currentMonth}</option>";
-                                        foreach ($months as $month) {
-                                            echo "<option value='{$month}'>{$month}</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Amount (¢)</label>
-                                <input type="text" class="form-control tfamount text-center" name="amount" placeholder="0.00">
-                            </div>
-                        </div>
+        <div id="dynamic_fields">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Year</label>
+                        <select name="year[]" class="form-control tfyear">
+                            <?php 
+                                $currentYear = date('Y');
+                                echo "<option value='{$currentYear}'>{$currentYear}</option>";
+                                for ($i = 2008; $i <= $currentYear; $i++) {
+                                    echo "<option value='{$i}'>{$i}</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
-                
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Month</label>
+                        <select name="month[]" class="form-control tfmonth">
+                            <?php
+                                $months = [
+                                    'January', 'February', 'March', 'April', 'May', 
+                                    'June', 'July', 'August', 'September', 'October', 
+                                    'November', 'December'
+                                ];
+                                $currentMonth = date('F');
+                                echo "<option value='{$currentMonth}'>{$currentMonth}</option>";
+                                foreach ($months as $month) {
+                                    echo "<option value='{$month}'>{$month}</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Amount (¢)</label>
+                        <input type="text" class="form-control tfamount text-center" name="amount[]" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="form-group">
+                        <label>.</label>
+                       <button type="button" class="form-control btn btn-danger remove_input"><i class="fa fa-minus"></i></button>
+                   
+                    </div>
+                </div>
             </div>
+        </div>
+        <button type="button" id="add_more_fields" class="btn btn-secondary"><i class="fa fa-plus"></i></button>
+   
+</div>
+
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-success btconfirm">Confirm</button>

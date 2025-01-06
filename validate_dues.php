@@ -22,33 +22,95 @@
     
     });
   
-    // Set default submitHandler for form validation
-    $.validator.setDefaults({
+     // Handle form submission
+     $.validator.setDefaults({
       submitHandler: function () {
         pay_dues();
       },
     });
-  
+
+
+    $(document).on('click', '.remove_input', function() {
+     $(this).closest('.row').remove();
+    });
+     
+     // Add more fields dynamically
+     $('#add_more_fields').on('click', function() {
+      var newFields = `
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                  
+                    <select name="year[]" class="form-control tfyear">
+                        <?php 
+                            $currentYear = date('Y');
+                            echo "<option value='{$currentYear}'>{$currentYear}</option>";
+                            for ($i = 2008; $i <= $currentYear; $i++) {
+                                echo "<option value='{$i}'>{$i}</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                   
+                    <select name="month[]" class="form-control tfmonth">
+                        <?php
+                            $months = [
+                                'January', 'February', 'March', 'April', 'May', 
+                                'June', 'July', 'August', 'September', 'October', 
+                                'November', 'December'
+                            ];
+                            $currentMonth = date('F');
+                            echo "<option value='{$currentMonth}'>{$currentMonth}</option>";
+                            foreach ($months as $month) {
+                                echo "<option value='{$month}'>{$month}</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                
+                    <input type="text" class="form-control tfamount text-center" name="amount[]" placeholder="0.00">
+                </div>
+            </div>
+             <div class="col-2">
+                    <div class="form-group">
+                       
+                       <button type="button" class="form-control btn btn-danger remove_input"><i class="fa fa-minus"></i></button>
+                   
+                    </div>
+                </div>
+        </div>`;
+      $('#dynamic_fields').append(newFields);
+    });
+
     
     // Method to save dues data
     function pay_dues() {
       var fd = new FormData();
-  
-      // Collect form data
       var name = $(".tfname").val();
       var member_id = $(".tfid").val();
-      var month = $(".tfmonth").val();
-      var year = $(".tfyear").val();
-      var amount = $(".tfamount").val();
       var dept = $(".tfdept").val();
-  
+
       fd.append("member_name", name);
       fd.append("member_id", member_id);
-      fd.append("year", year);
-      fd.append("month", month);
-      fd.append("amount", amount);
       fd.append("department", dept);
-  
+
+      // Collect dynamic form data
+      $("select[name='year[]']").each(function(index) {
+        fd.append("year[]", $(this).val());
+      });
+      $("select[name='month[]']").each(function(index) {
+        fd.append("month[]", $(this).val());
+      });
+      $("input[name='amount[]']").each(function(index) {
+        fd.append("amount[]", $(this).val());
+      });
+
       $.ajax({
         url: "save_dues.php",
         type: "POST",
@@ -80,6 +142,7 @@
         },
       });
     }
+
   
     // Handle the click event for the delete button
     $('.delbtn').on('click', function() {
@@ -130,14 +193,14 @@ function delete_dues() {
     // Validate the dues form
     $("#dues_form").validate({
       rules: {
-        year: { required: true },
-        month: { required: true },
-        amount: { required: true },
+        "year[]": { required: true },
+        "month[]": { required: true },
+        "amount[]": { required: true },
       },
       messages: {
-        year: { required: "Please select year" },
-        month: { required: "Please select month" },
-        amount: { required: "Please enter amount" },
+        "year[]": { required: "Please select year" },
+        "month[]": { required: "Please select month" },
+        "amount[]": { required: "Please enter amount" },
       },
       errorElement: "span",
       errorPlacement: function (error, element) {
