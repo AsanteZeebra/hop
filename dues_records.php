@@ -154,7 +154,7 @@ $department = $_GET['dept'];
       
 <!-- Modal for Dues Payment -->
 <div class="modal fade" id="atmodal">
-    <div class="modal-dialog modal-scrollable">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
                 <h4 class="modal-title">Dues Payment</h4>
