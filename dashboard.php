@@ -22,10 +22,10 @@ include_once ('database_connection.php');
 <body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed ">
   <div class="wrapper">
 
-    <!-- Preloader
+   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="dist/img/hop1.png" alt="HOP logo" height="60" width="60">
-  </div> -->
+  </div> 
 
   <?php include_once('navbar.php'); ?>
 
@@ -548,6 +548,12 @@ include_once ('database_connection.php');
   <!-- ./wrapper -->
 
   <?php include_once ('script.php'); ?>
+  <script>
+  // Example: Remove preloader after page load
+  window.addEventListener("load", function () {
+    document.getElementById("preloader").style.display = "none";
+  });
+</script>
 
   <?php
   include_once ('dashbaord_chart.php');
