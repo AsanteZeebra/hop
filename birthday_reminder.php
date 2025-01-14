@@ -22,7 +22,7 @@ try {
             $telephone = $row['telephone'];
 
             // Compose the birthday wish message
-            $message = "Happy Birthday, $fullname! 🎉 Wishing you a wonderful day filled with joy and success. - HOP TEMA";
+            $message = "Heavenoo, Happy Birthday $fullname! Wishing you a wonderful day filled with joy and success. - HOP TEMA";
 
             // Insert the message into the sms_queue table
             $insert_sql = "INSERT INTO sms_queue (fullname, telephone, message, status) VALUES (?, ?, ?, 'pending')";
