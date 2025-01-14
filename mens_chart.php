@@ -44,7 +44,7 @@
      labels: <?php echo json_encode($sy) ?>,
      datasets: [
        {
-        label:'Warefare',
+        label:'Welfare',
          data: <?php echo json_encode($sam); ?>,
           backgroundColor : ['#00a65a','#FFD14F','#E44032','#8FBB47','#17CB53','#233F93','#7F7F4E','#343A40','#EE3C23','#11C3DC','#93B3AC','#433007'],
        },
