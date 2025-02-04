@@ -81,7 +81,7 @@ switch ($department) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"><?php echo $_GET['dept'] ?>'s Department</h1>
+            <h1 class="m-0">Benefits - <?php echo $_GET['dept'] ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -104,10 +104,10 @@ switch ($department) {
            <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Total Members</span>
+                <span class="info-box-text">Total Requests</span>
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT COUNT(DISTINCT member_id) AS total FROM dues WHERE department='$department' ";
+                    $sql = "SELECT COUNT(DISTINCT member_id) AS total FROM benefits WHERE department='$department' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
@@ -132,11 +132,11 @@ switch ($department) {
            <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-ban"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Rejected Expenses</span>
+                <span class="info-box-text">Rejected</span>
                 
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT SUM(amount) AS total FROM exepenses WHERE department='$department' AND status='Rejected' ";
+                    $sql = "SELECT SUM(amount) AS total FROM benefits WHERE department='$department' AND status='Rejected' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
@@ -165,10 +165,10 @@ switch ($department) {
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-bill"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Approved Expenses</span>
+                <span class="info-box-text">Approved</span>
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT SUM(amount) AS total FROM exepenses WHERE department='$department' AND status='Approved' ";
+                    $sql = "SELECT SUM(amount) AS total FROM benefits WHERE department='$department' AND status='Approved' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
@@ -193,11 +193,11 @@ switch ($department) {
         <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-file-invoice" style="color:white"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text">Welfare Total(¢)</span>
+                <span class="info-box-text">Total Amount Released(¢)</span>
 
                <?php
                $department = $_GET['dept'];
-                    $sql = "SELECT SUM(amount) AS total FROM dues WHERE department='$department' AND status='Paid' ";
+                    $sql = "SELECT SUM(amount) AS total FROM benefits WHERE department='$department' AND status='Approved' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
@@ -220,11 +220,100 @@ switch ($department) {
         </div>
         <!-- /.row -->
 
+
+        <div class="modal fade" id="benefit">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Benefit Claim</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <form method="post">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Fullname</label>
+                  <select name="" id="" class="form-control select2bs4">
+                    <option value="">--choose--</option>
+                    <option value="Asant Michael">Asante Michael</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Member ID</label>
+                  <select name="" id="" class="form-control select2bs4">
+                    <option value="">--choose--</option>
+                    <option value="1256699">12345699</option>
+
+                  </select>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Benefit_type</label>
+                  <select name="" id="" class="form-control select2bs4">
+                    <option value="">--choose--</option>
+                    <option value="Child birth">Childer birth</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Health">Health</option>
+                    <option value="Funeral">Funeral</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Amount</label>
+                 <input type="number" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">telephone</label>
+                 <input type="text" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Address</label>
+                <textarea name="" id="" class="form-control"></textarea>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="">Comment</label>
+                <textarea name="" id="" class="form-control"></textarea>
+                  </div>
+                </div>
+
+
+              </div>
+             </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Submmit</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                 <h5 class="card-title">Transactions</h5> 
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -241,80 +330,44 @@ switch ($department) {
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-8">
-                   
-
-                    <div class="chart">
-                   
-                    <?php
-
-
-$year = date('Y');
-$department = $_GET['dept'];
-
-$query = $con->query("SELECT month AS ms,id, COUNT(*) AS sam FROM dues  WHERE year='$year' AND status='Paid'AND department='$department' GROUP BY month ");
-
-foreach ($query as $row) {
-
-
-  $sy[] = $row['ms'];
-
-  $sam[] = $row['sam'];
-
-
-
-
-}
-?>
-
-                      <canvas id="dot" height="250" style="height: 250px;"></canvas>
-                    </div>
-                    <!-- /.chart-responsive -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4">
-                 
-                <div class="row">
                   <div class="col-md-12">
-                    <div class="chart-responsive">
-                    </p>
-                        <?php
+                   <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#benefit" style="float:right;"><i class="fa fa-plus"></i> New Request</button>
+               <br>
+               <br>
 
-                        $year = date('Y');
-                        $department = $_GET['dept'];
-                        $query = $con->query("SELECT month AS ms,id, COUNT(*) AS sam FROM dues  WHERE year='$year' AND department='$department' AND status='Paid' GROUP BY month  ");
-
-                        foreach ($query as $row) {
-
-
-
-                          $month[] = $row['ms'];
-                          $tot[] = $row['sam'];
-
-                        }
-                        ?>
-                      <canvas id="line" height="200"></canvas>
-                    </div>
-                    <!-- ./chart-responsive -->
+                   <table class="table table-hover" id="example1">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Department</th>
+                      <th>Benefit_type</th>
+                       <th>Amount(¢)</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>125</td>
+                      <td>Asante Michael</td>
+                      <td>Main</td>
+                      <td>Wedding benefit</td>
+                      <td>¢2000.00</td>
+                      <td>Approved</td>
+                      <td><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a> <a href="benefit_receipt.php? dept=<?php echo $_GET['dept'] ?> && mid=<?php echo $_GET['mid'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i></a> </td>
+                    </tr>
+                  </tbody>
+                </table>
+                  
                   </div>
-                  <!-- /.col -->
                 
-                </div>
-                <!-- /.row -->
-            
-                  </div>
-                  <!-- /.col -->
                 </div>
                 <!-- /.row -->
               </div>
               <!-- ./card-body -->
               <div class="card-footer">
-                <div class="row">
-
-                <a href="report_today_men.php?mid=<?php echo $_GET['mid']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Today's Report</a>
-               
               
-              </div>
                 <!-- /.row -->
               </div>
               <!-- /.card-footer -->
