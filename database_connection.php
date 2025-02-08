@@ -11,7 +11,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "0249kwaku";
-        $dbname = "hop";
+        $dbname = "fremepxt_hop";
 
         // Create a new connection
         $con = new mysqli($servername, $username, $password, $dbname);

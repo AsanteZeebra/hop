@@ -6,7 +6,7 @@ header("Access-Control-Allow-Methods: GET");
 include_once("connect.php");
 
 // Fetch members from the database
-$sql = "SELECT * FROM members LIMIT 50";
+$sql = "SELECT * FROM members";
 $result = $conn->query($sql);
 
 $dues = [];
