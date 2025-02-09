@@ -9,13 +9,13 @@ include_once("connect.php");
 $sql = "SELECT * FROM members LIMIT 50";
 $result = $conn->query($sql);
 
-$dues = [];
+$names = [];
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $dues[] = $row;
+        $names[] = $row;
     }
-    echo json_encode(["success" => true, "members" => $dues]);
+    echo json_encode(["success" => true, "members" => $names]);
 } else {
     echo json_encode(["success" => false, "message" => "No dues records found"]);
 }
