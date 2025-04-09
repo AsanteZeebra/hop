@@ -321,7 +321,7 @@ if ($run) {
                       <td>" . number_format($row['amount'], 2) . "</td>
                       <td>{$row['date_created']}</td>
                       <td><span class='badge badge-danger'>Unpaid</span></td>
-                      <td><a href='dues_records.php?idd={$row['member_id']}&memb={$row['fullname']}&mid={$_GET['mid']} &dept={$_GET['dept']}' class='btn btn-primary btn-sm'><i class='fa fa-arrow-circle-right'></i> Pay</a> </td>
+                      <td><a href='dues_records.php?idd={$row['member_id']}&memb={$row['fullname']}&mid={$_GET['mid']} &dept={$_GET['dept']}' class='btn btn-outline-primary btn-sm'><i class='fa fa-arrow-circle-right'></i> Pay</a> </td>
                     </tr>";
             }
           } else {
