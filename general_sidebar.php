@@ -96,7 +96,7 @@ $mem_id = $_GET['mid'];
               <li class="nav-item">
                 <a href="benefit_claims.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
                 <i class="nav-icon fas fa-user-shield"></i>
-                  <p>Benefits</p>
+                  <p>Benefit</p>
                 </a>
               </li>
               <li class="nav-item">
