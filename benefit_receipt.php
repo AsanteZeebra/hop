@@ -1,18 +1,26 @@
 <?php
 include_once('database_connection.php');
-
-
 include_once('load_session.php');
- ?>
+
+// Sanitize input
+$department = htmlspecialchars($_GET['dept']);
+$transaction_id = htmlspecialchars($_GET['mid']);
+
+// Prepare and execute query
+$stmt = $con->prepare("SELECT * FROM benefits WHERE transaction_id = ?");
+$stmt->bind_param("s",  $transaction_id);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benefit Claim Confirmation</title>
-   <?php include_once('head.php'); ?>
-   <style>
+    <title>Benefits</title>
+    <?php include_once('head.php'); ?>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
@@ -53,62 +61,75 @@ include_once('load_session.php');
         }
     </style>
 </head>
-<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
    <div class="wrapper">
-   
-  
-  <!-- /.navbar -->
+       <div class="header-section">
+           <img src="dist/img/hop1.png" alt="Church Logo" />
+           <h4 style="font-size:30px">Benefits Form</h4>
+           <p> Tema Branch</p>
+       </div>
+         <table  style="float: right;">
+            <tr>
+                <td><img src="dist/img/user.png" alt="photo" style="width: 10%; float:right"></td>
+            </tr>
+         </table>
+       <table class="info-table" width="100%">
+       <?php
+       if ($result->num_rows > 0) {
+           while ($row = $result->fetch_assoc()) {
+       ?>
+           <tr>
+               <th>Member Name:</th>
+               <td><?php echo $row['fullname']; ?></td>
+               <th>Member ID:</th>
+               <td><?php echo $row['member_id']; ?></td>
+           </tr>
+           <tr>
+               <th>Benefit Type:</th>
+               <td><?php echo $row['benefit_type']; ?></td>
+               <th>Amount(¢):</th>
+               <td><?php echo number_format($row['amount'],2)?></td>
+           </tr>
+           <tr>
+               <th>Status:</th>
+               <td><?php echo $row['status']; ?></td>
+               <th>Approved By:</th>
+               <td><?php echo $row['approved_by'] ?? 'Pending Approval'; ?></td>
+           </tr>
+      
+       </table>
 
+       <h5 class="mt-4">Details</h5>
+       <table class="table-section">
+           <tr>
+               <th>Date Created</th>
+               <td><?php echo $row['created_at'] ?? 'N/A'; ?></td>
+               <th>Total Amount(¢)</th>
+               <td><?php echo number_format($row['amount'],2) ?? 'N/A'; ?></td>
+           </tr>
+           <tr>
+               <th>Comments</th>
+               <td colspan="3"><?php echo $row['comment'] ?? 'N/A'; ?></td>
+           </tr>
+       </table>
+       <?php
+           }
+       } else {
+           echo "<tr><td colspan='4'>No Record Found!</td></tr>";
+       }
+       ?>
+       <div class="footer-section">
+           <p><strong>Note:</strong> If you have any questions, please contact the church administration.</p>
+           <p class="text-muted">This document is strictly confidential and intended for authorized use only.</p>
+       </div>
+   </div>
+   <?php include_once('footer.php'); ?>
+   <?php include_once('script.php'); ?>
 
-  <!-- Sidebar -->
-
-<div class="header-section">
-        <img src="dist/img/hop1.png" alt="Logo" style="height: 30%;">
-        <h4>Benefit Claim Confirmation</h4>
-        <p>{{church_address}}</p>
-    </div>
-    
-    <table class="info-table" width="100%">
-        <tr>
-            <th>Member Name:</th>
-            <td>{{fullname}}</td>
-            <th>Member ID:</th>
-            <td>{{member_id}}</td>
-        </tr>
-        <tr>
-            <th>Benefit Type:</th>
-            <td>{{benefit_type}}</td>
-            <th>Amount:</th>
-            <td>${{amount}}</td>
-        </tr>
-        <tr>
-            <th>Status:</th>
-            <td>{{status}}</td>
-            <th>Approved By:</th>
-            <td>{{approved_by}}</td>
-        </tr>
-    </table>
-    
-    <h5 class="mt-4">Details</h5>
-    <table class="table-section">
-        <tr>
-            <th>Date Submitted</th>
-            <td>{{date_submitted}}</td>
-            <th>Reference ID</th>
-            <td>{{reference_id}}</td>
-        </tr>
-        <tr>
-            <th>Comments</th>
-            <td colspan="3">{{comments}}</td>
-        </tr>
-    </table>
-    
-    <div class="footer-section">
-        <p><strong>Note:</strong> If you have any questions, please contact the church administration.</p>
-        <p class="text-muted">This document is strictly confidential and intended for authorized use only.</p>
-    </div>
-    </div>
-    <?php include_once('footer.php'); ?>
-    <?php include_once('script.php'); ?>
+   <script>
+    window.onload = function() {
+        window.print();
+    };
+   </script>
 </body>
 </html>

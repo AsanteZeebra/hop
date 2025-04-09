@@ -98,6 +98,12 @@ $mem_id = $_GET['mid'];
                 </a>
               </li>
               <li class="nav-item">
+                <a href="benefit_claims.php?mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept'] ?>" class="nav-link">
+                <i class="nav-icon fas fa-user-shield"></i>
+                  <p>Benefits</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="ad_expenses.php?mid=<?php echo $_GET['mid']; ?> && dept=<?php echo $_GET['dept'] ?> " class="nav-link">
                 <i class="nav-icon fa-solid fa-file-invoice"></i>
                   <p>Expenses</p>

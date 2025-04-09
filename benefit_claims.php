@@ -136,14 +136,14 @@ switch ($department) {
                 
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT SUM(amount) AS total FROM benefits WHERE department='$department' AND status='Rejected' ";
+                    $sql = "SELECT COUNT(*) AS total FROM benefits WHERE department='$department' AND status='Rejected' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
 
                         $count = $row['total'];
                         ?>
-                        <span class="info-box-number">¢<?php echo number_format($count,2) ?></span>
+                        <span class="info-box-number"><?php echo $count ?></span>
                       <?php }
                     } else {
                       echo "No Records Found";
@@ -165,17 +165,17 @@ switch ($department) {
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-bill"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Approved</span>
+                <span class="info-box-text">Approved count</span>
                 <?php
                 $department = $_GET['dept'];
-                    $sql = "SELECT SUM(amount) AS total FROM benefits WHERE department='$department' AND status='Approved' ";
+                    $sql = "SELECT COUNT(*) AS total FROM benefits WHERE department='$department' AND status='Approved' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
 
-                        $count = $row['total'];
+                        $count2 = $row['total'];
                         ?>
-                        <span class="info-box-number">¢<?php echo number_format($count,2) ?></span>
+                        <span class="info-box-number"><?php echo $count2 ?></span>
                       <?php }
                     } else {
                       echo "No Records Found";
@@ -202,9 +202,9 @@ switch ($department) {
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
 
-                        $count = $row['total'];
+                        $count3 = $row['total'];
                         ?>
-                        <span class="info-box-number">¢<?php echo number_format($count,2) ?></span>
+                        <span class="info-box-number">¢<?php echo number_format($count3,2) ?></span>
                       <?php }
                     } else {
                       echo "No Records Found";
@@ -220,6 +220,35 @@ switch ($department) {
         </div>
         <!-- /.row -->
 
+        <div class="modal fade" id="mdquestion" style="margin-top: 15%;">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" style="width: 100%; text-align: center;">Are you Sure Want to Delete<i
+                      class="fa fa-question"></i></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class='row'>
+                    <div class='col-9'>
+                      <input hidden  type="text" disabled class='form-control tfid'>
+                    </div>
+                  
+                  </div>
+                  <center>
+                    <button class="btn btn-info" data-dismiss="modal">No</button>
+                    <button class="btn btn-danger delbtn">Yes</button>
+                  </center>
+
+                </div>
+
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
 
         <div class="modal fade" id="benefit">
         <div class="modal-dialog modal-lg">
@@ -231,23 +260,50 @@ switch ($department) {
               </button>
             </div>
             <div class="modal-body">
-             <form method="post">
+             <form method="post" id="benefit_form">
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Fullname</label>
-                  <select name="" id="" class="form-control select2bs4">
+                  <select name="fullname" class="form-control select2bs4 tfname">
                     <option value="">--choose--</option>
-                    <option value="Asant Michael">Asante Michael</option>
+                    <?php
+               $department = $_GET['dept'];
+                    $sql = "SELECT * FROM dues WHERE department='$department' ";
+                    $execute = mysqli_query($con, $sql);
+                    if ($execute) {
+                      while ($row = mysqli_fetch_array($execute)) {
+
+                        $name = $row['fullname'];
+                        ?>
+                        <option value="<?php echo $name ?>"><?php echo $name ?></option>
+                      <?php }
+                    } else {
+                      echo "No Records Found";
+                    } ?>
                   </select>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Member ID</label>
-                  <select name="" id="" class="form-control select2bs4">
+                  <select name="member_id"  class="form-control select2bs4 tfid">
                     <option value="">--choose--</option>
-                    <option value="1256699">12345699</option>
+                    <?php
+               $department = $_GET['dept'];
+                    $sql = "SELECT * FROM dues WHERE department='$department' ";
+                    $execute = mysqli_query($con, $sql);
+                    if ($execute) {
+                      while ($row = mysqli_fetch_array($execute)) {
+
+                        $idd = $row['member_id'];
+                        $name = $row['fullname'];
+                        ?>
+                        <option value="<?php echo $idd ?>"><?php echo $idd ?> <span><small> <?php echo $name ?></small></span> </option>
+                      <?php }
+                    } else {
+                      echo "No Records Found";
+                    } ?>
 
                   </select>
                   </div>
@@ -256,12 +312,13 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Benefit_type</label>
-                  <select name="" id="" class="form-control select2bs4">
+                  <select name="benefit" class="form-control select2bs4 tfbenefit">
                     <option value="">--choose--</option>
-                    <option value="Child birth">Childer birth</option>
+                    <option value="Child birth">Child birth</option>
                     <option value="Wedding">Wedding</option>
                     <option value="Health">Health</option>
                     <option value="Funeral">Funeral</option>
+                    <option value="Petty Cash" >Petty Cash</option>
                     <option value="Others">Others</option>
                   </select>
                   </div>
@@ -270,39 +327,53 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Amount</label>
-                 <input type="number" class="form-control" required>
+                 <input type="number" class="form-control tfamount" name="amount">
                   </div>
                 </div>
 
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">telephone</label>
-                 <input type="text" class="form-control" required>
+                 <input type="text" class="form-control tftelephone" name="telephone">
                   </div>
                 </div>
 
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Address</label>
-                <textarea name="" id="" class="form-control"></textarea>
+                <textarea name="address"  class="form-control tfaddress"></textarea>
                   </div>
                 </div>
 
                 <div class="col-12">
                   <div class="form-group">
                     <label for="">Comment</label>
-                <textarea name="" id="" class="form-control"></textarea>
+                <textarea name="comment"  class="form-control tfcomment"></textarea>
                   </div>
                 </div>
+   <div class="col-12">
+    <div class="form-group">
+      <label for="">Status</label>
+      <select name="status" class="form-select select2bs4 tfstatus">
+        <option value="">--choose--</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </div>
+   </div>
 
+   <input type="text" class="form-control tfdepartment" name="department" hidden disabled value="<?php echo $_GET['dept'] ?>" >
 
               </div>
-             </form>
+            
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Submmit</button>
+              <button type="button" class="btn btn-outline-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-outline-primary">Submmit</button>
             </div>
+
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -331,7 +402,7 @@ switch ($department) {
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
-                   <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#benefit" style="float:right;"><i class="fa fa-plus"></i> New Request</button>
+                   <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#benefit" style="float:right;"><i class="fa fa-plus"></i> New Request</button>
                <br>
                <br>
 
@@ -348,15 +419,29 @@ switch ($department) {
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+
+
+$sql = "SELECT * FROM  benefits WHERE department='$department' ";
+$result = mysqli_query($con, $sql);
+if ($result) {
+    while ($row = mysqli_fetch_array($result)) {
+      
+        ?>
                     <tr>
-                      <td>125</td>
-                      <td>Asante Michael</td>
-                      <td>Main</td>
-                      <td>Wedding benefit</td>
-                      <td>¢2000.00</td>
-                      <td>Approved</td>
-                      <td><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a> <a href="benefit_receipt.php? dept=<?php echo $_GET['dept'] ?> && mid=<?php echo $_GET['mid'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i></a> </td>
+                      <td><?php echo $row['transaction_id'] ?></td>
+                      <td><?php echo $row['fullname'] ?></td>
+                      <td><?php echo $row['department'] ?></td>
+                      <td><?php echo $row['benefit_type'] ?></td>
+                      <td><?php echo $row['amount'] ?></td>
+                      <td><?php echo $row['status'] ?></td>
+                      <td><a href="#" class="btn btn-danger btn-sm btdel" data-toggle="modal" data-target="#mdquestion"><i class="fa fa-trash"></i></a> <a href="benefit_receipt.php? dept=<?php echo $row['department'] ?> && mid=<?php echo $row['transaction_id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i></a> </td>
                     </tr>
+                    
+                    <?php }
+                                } else {
+                                    echo "No Record Found!";
+                                } ?>
                   </tbody>
                 </table>
                   
@@ -412,8 +497,8 @@ switch ($department) {
 <!-- ./wrapper -->
 
 <?php include_once('script.php'); ?>
-<?php include_once('mens_chart.php'); ?>
 
+<script src="benefits.js"></script>
 
 </body>
 </html>

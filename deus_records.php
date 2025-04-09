@@ -254,10 +254,11 @@ include_once('load_session.php');
               </div>
               <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success btconfirm">Confirm</button>
+                <button type="submit" id="submitBtn" class="btn btn-success btconfirm">
+                  Confirm
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spinner"></span>
+                </button>
               </div>
-
-
               </form>
             </div>
             <!-- /.modal-content -->
@@ -421,16 +422,22 @@ include_once('load_session.php');
   <script src="validate_dues.js"></script>
 
   <script>
-  
-  $('.back').click(function(){
-    if (document.referrer) {
-      window.location.href = document.referrer;
-  } else {
-      window.history.back();
-  }
+  $(document).ready(function() {
+    $('#dues_form').on('submit', function(event) {
+      var submitBtn = $('#submitBtn');
+      var spinner = $('#spinner');
+      submitBtn.prop('disabled', true);
+      spinner.removeClass('d-none');
+    });
 
+    $('.back').click(function() {
+      if (document.referrer) {
+        window.location.href = document.referrer;00
+      } else {
+        window.history.back();
+      }
+    });
   });
-
 </script>
 
 </body>

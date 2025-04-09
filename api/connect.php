@@ -1,7 +1,7 @@
 <?php
 // Database connection
     $host = "localhost";
-        $username = "fremepxt_root";
+        $username = "root";
         $password = "0249kwaku";
         $database = "fremepxt_hop";
 
