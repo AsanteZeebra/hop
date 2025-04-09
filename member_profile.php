@@ -84,7 +84,7 @@ include_once('load_session.php');
         </div><!-- /.container-fluid -->
       </section>
 
-      <button class="btn btn-primary btn-sm back" style="margin-left: 20px;"><i class="fa fa-arrow-left"></i>
+      <button class="btn btn-outline-primary btn-sm back" style="margin-left: 20px;"><i class="fa fa-arrow-left"></i>
         Back</button>
       <br>
       <br>
@@ -176,11 +176,11 @@ include_once('load_session.php');
                       <div class="row">
                         <div class="col-6"><a
                             href="edit_profile.php?mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>"
-                            class="btn btn-primary btn-block"><i class="fa-solid fa-pen"></i> Edit</a>
+                            class="btn btn-outline-primary btn-block"><i class="fa-solid fa-pen"></i> Edit</a>
                         </div>
                         <div class="col-6">
                           <a href="proview.php?mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>"
-                            class="btn btn-primary btn-block"><i class="fa-solid fa-print"></i> Print</a>
+                            class="btn btn-outline-primary btn-block"><i class="fa-solid fa-print"></i> Print</a>
 
                         </div>
                       </div>

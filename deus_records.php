@@ -253,8 +253,8 @@ include_once('load_session.php');
 
               </div>
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" id="submitBtn" class="btn btn-success btconfirm">
+                <button type="button" class="btn btn-outline-default" data-dismiss="modal">Close</button>
+                <button type="submit" id="submitBtn" class="btn btn-outline-success btconfirm">
                   Confirm
                   <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="spinner"></span>
                 </button>

@@ -139,7 +139,7 @@ if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 3
   <div class="card">
     <div class="card-body">
         
-  <button class="btn btn-primary btn-sm back" ><i class="fa fa-arrow-left"></i> Back</button>   <a href="member_registration.php?mid=<?php echo $_GET['mid']; ?>" class="btn btn-primary btn-sm" style="float:right" > <i class="fa-solid fa-user-plus"></i> New Member</a> 
+  <button class="btn btn-outline-primary btn-sm back" ><i class="fa fa-arrow-left"></i> Back</button>   <a href="member_registration.php?mid=<?php echo $_GET['mid']; ?>" class="btn btn-outline-primary btn-sm" style="float:right" > <i class="fa-solid fa-user-plus"></i> New Member</a> 
 <br>
  <br>
  
@@ -205,7 +205,7 @@ if (!empty($photo)) {
         ?>
        
        
-        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>&&dept=Main" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Member Information"><i class="fa-regular fa-pen-to-square"></i></a>   <a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="View Member Profile"> <i class="fa-solid fa-id-card"></i></a></td>
+        <td><a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>&&dept=Main" class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Member Information"><i class="fa-regular fa-pen-to-square"></i></a>   <a href="member_profile.php? mid=<?php echo $_GET['mid']; ?>&uid=<?php echo $member_id; ?>" class="btn btn-outline-success btn-sm" data-toggle="tooltip" data-placement="top" title="View Member Profile"> <i class="fa-solid fa-id-card"></i></a></td>
       </tr>
     
       <?php    }
