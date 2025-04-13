@@ -312,7 +312,7 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Benefit_type</label>
-                  <select name="benefit" class="form-control select2bs4 tfbenefit">
+                  <select name="benefit" class="form-control  tfbenefit">
                     <option value="">--choose--</option>
                     <option value="Child birth">Child birth</option>
                     <option value="Wedding">Wedding</option>
@@ -351,16 +351,23 @@ switch ($department) {
                 <textarea name="comment"  class="form-control tfcomment"></textarea>
                   </div>
                 </div>
-   <div class="col-12">
+   <div class="col-6">
     <div class="form-group">
       <label for="">Status</label>
-      <select name="status" class="form-select select2bs4 tfstatus">
+      <select name="status" class="form-select  tfstatus">
         <option value="">--choose--</option>
         <option value="Approved">Approved</option>
         <option value="Rejected">Rejected</option>
         <option value="Pending">Pending</option>
       </select>
     </div>
+   </div>
+
+   <div class="col-6">
+    <label for="">Approved by:</label>
+    <div class="form-group">
+      <input type="text" name="approved_by" class="form-control tfapproved" placeholder="Approved by" />
+     </div>
    </div>
 
    <input type="text" class="form-control tfdepartment" name="department" hidden disabled value="<?php echo $_GET['dept'] ?>" >

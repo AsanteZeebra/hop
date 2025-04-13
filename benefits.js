@@ -172,6 +172,9 @@ $('.btdel').on('click', function() {
           status: {
             required: true,
           },
+          approved_by: {
+            required: true,
+          },
 
           
         },
@@ -199,6 +202,9 @@ $('.btdel').on('click', function() {
             },
             status: {
                 required: "Please select status",
+            },
+            approved_by: {
+                required: "Please enter officer's Name",
             },
           
         },
