@@ -268,7 +268,7 @@ switch ($department) {
                   <select name="fullname" class="form-control select2bs4 tfname">
                     <option value="">--choose--</option>
                     <?php
-               $department = $_GET['dept'];
+                     $department = $_GET['dept'];
                     $sql = "SELECT * FROM dues WHERE department='$department' ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
