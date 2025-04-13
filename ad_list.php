@@ -203,7 +203,7 @@ include_once('load_session.php');
                         <td>$department_safe</td>
                         <td><span class='badge $badgeClass'>$amountFormatted</span> </td>
                         <td>
-                            <a href='dues_records.php?mid=$idd&dept=$department_safe&idd=$member_id ' class='btn btn-primary btn-sm' data-toggle='tooltip' title='Dues Records'><i class='fas fa-arrow-right'></i> View</a>
+                            <a href='dues_records.php?mid=$idd&dept=$department_safe&idd=$member_id ' class='btn btn-outline-primary btn-sm' data-toggle='tooltip' title='Dues Records'><i class='fas fa-arrow-right'></i> View</a>
                         </td>
                     </tr>";
                 }

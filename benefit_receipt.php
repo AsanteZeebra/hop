@@ -94,7 +94,7 @@ $result = $stmt->get_result();
                <th>Status:</th>
                <td><?php echo $row['status']; ?></td>
                <th>Approved By:</th>
-               <td><?php echo $row['approved_by'] ?? 'Pending Approval'; ?></td>
+               <td></td>
            </tr>
       
        </table>
