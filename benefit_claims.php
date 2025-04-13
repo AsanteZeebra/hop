@@ -265,7 +265,7 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Fullname</label>
-                  <select name="fullname" class="form-control select2bs4 tfname">
+                  <select name="fullname" class="form-control select2 tfname">
                     <option value="">--choose--</option>
                     <?php
                $department = $_GET['dept'];
@@ -287,7 +287,7 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Member ID</label>
-                  <select name="member_id"  class="form-control select2bs4 tfid">
+                  <select name="member_id"  class="form-control select2 tfid">
                     <option value="">--choose--</option>
                     <?php
                $department = $_GET['dept'];
