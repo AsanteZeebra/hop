@@ -435,7 +435,7 @@ if ($result) {
                       <td><?php echo $row['benefit_type'] ?></td>
                       <td><?php echo $row['amount'] ?></td>
                       <td><?php echo $row['status'] ?></td>
-                      <td><a href="#" class="btn btn-danger btn-sm btdel" data-toggle="modal" data-target="#mdquestion"><i class="fa fa-trash"></i></a> <a href="benefit_receipt.php? dept=<?php echo $row['department'] ?> && mid=<?php echo $row['transaction_id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i></a> </td>
+                      <td><a href="#" class="btn btn-outline-danger btn-sm btdel" data-toggle="modal" data-target="#mdquestion"><i class="fa fa-trash"></i></a> <a href="benefit_receipt.php? dept=<?php echo $row['department'] ?> && mid=<?php echo $row['transaction_id'] ?>" class="btn btn-outline-success btn-sm"><i class="fa fa-print"></i></a> </td>
                     </tr>
                     
                     <?php }
