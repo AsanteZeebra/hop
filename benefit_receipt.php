@@ -93,7 +93,7 @@ $result = $stmt->get_result();
            <tr>
                <th>Status:</th>
                <td><?php echo $row['status']; ?></td>
-               <th>Approved By:</th>
+               <th>Approved By: <?php echo $row['approved_by'] ?></th>
                <td></td>
            </tr>
       

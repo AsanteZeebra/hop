@@ -82,12 +82,13 @@ $('.btdel').on('click', function() {
         },
       });
 
+   
       function record_benefits() {
         var fd = new FormData();
     
       
         var name = $(".tfname").val();
-        var member_id = $(".tfid").val();
+        var member_id = $(".mem_id").val();
         var amount = $(".tfamount").val();
         var benefit  = $(".tfbenefit").val();
         var telephone = $('.tftelephone').val();
@@ -95,6 +96,7 @@ $('.btdel').on('click', function() {
         var comment = $('.tfcomment').val();
         var status = $('.tfstatus').val();
         var department = $('.tfdepartment').val();
+        var approved_by = $('.tfapproved').val();
       
         
     
@@ -108,6 +110,7 @@ $('.btdel').on('click', function() {
         fd.append("comment", comment);
         fd.append("status", status);
         fd.append("department", department);
+        fd.append("approved_by", approved_by);
         
        
     

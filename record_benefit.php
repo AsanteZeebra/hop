@@ -19,6 +19,7 @@ $address = validate_input($_POST['address']);
 $comment = validate_input($_POST['comment']);
 $status = validate_input($_POST['status']);
 $department = validate_input($_POST['department']);
+$approved_by = validate_input($_POST['approved_by']);
 
 // Validate numeric fields
 if (!is_numeric($amount)) {
@@ -46,11 +47,11 @@ try {
         $insert_stmt = $con->prepare("
             INSERT INTO benefits (
                 transaction_id, fullname, member_id, telephone, address, benefit_type, department,
-                amount, comment, status
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                amount, comment, status,approved_by
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
         ");
         $insert_stmt->bind_param(
-            "ssssssssss", // 10 placeholders
+            "sssssssssss", // 10 placeholders
             $transaction_id,
             $fullname,
             $member_id,
@@ -60,11 +61,12 @@ try {
             $department,
             $amount,
             $comment, // Add the missing $comment variable
-            $status
+            $status,
+            $approved_by
         );
 
         if ($insert_stmt->execute()) {
-            echo 'Transaction Recorded successfully!';
+            echo "$fullname's Transaction Recorded successfully!";
         } else {
             echo "Error: " . $insert_stmt->error;
         }

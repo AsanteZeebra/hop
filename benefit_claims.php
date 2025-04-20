@@ -287,7 +287,7 @@ switch ($department) {
                 <div class="col-6">
                   <div class="form-group">
                     <label for="">Member ID</label>
-                  <select name="member_id"  class="form-control select2bs4 tfid">
+                  <select name="member_id"  class="form-control select2bs4 mem_id">
                     <option value="">--choose--</option>
                     <?php
                     $department = $_GET['dept'];
@@ -295,12 +295,10 @@ switch ($department) {
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
-
-                       
                         $name = $row['fullname'];
                         $idd = $row['member_id'];
                         ?>
-                        <option value="<?php echo $idd ?>"><?php echo $idd ?> <span><small> <?php echo $name ?></small></span> </option>
+                        <option value="<?php echo $idd ?>"><?php echo $name,$idd ?> </option>
                       <?php }
                     } else {
                       echo "No Records Found";
@@ -506,7 +504,7 @@ if ($result) {
 
 <?php include_once('script.php'); ?>
 
-<script src="benefits.js"></script>
+<script src="benefits.js?t=1255"></script>
 
 </body>
 </html>
