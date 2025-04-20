@@ -354,7 +354,7 @@ switch ($department) {
    <div class="col-6">
     <div class="form-group">
       <label for="">Status</label>
-      <select name="status" class="form-select  tfstatus">
+      <select name="status" class="form-control  tfstatus">
         <option value="">--choose--</option>
         <option value="Approved">Approved</option>
         <option value="Rejected">Rejected</option>
