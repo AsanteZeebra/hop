@@ -290,14 +290,15 @@ switch ($department) {
                   <select name="member_id"  class="form-control select2bs4 tfid">
                     <option value="">--choose--</option>
                     <?php
-               $department = $_GET['dept'];
-                    $sql = "SELECT * FROM members WHERE department='$department' ";
+                    $department = $_GET['dept'];
+                    $sql = "SELECT * FROM dues  WHERE department='$department' GROUP BY member_id ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
 
-                        $idd = $row['member_id'];
+                       
                         $name = $row['fullname'];
+                        $idd = $row['member_id'];
                         ?>
                         <option value="<?php echo $idd ?>"><?php echo $idd ?> <span><small> <?php echo $name ?></small></span> </option>
                       <?php }
