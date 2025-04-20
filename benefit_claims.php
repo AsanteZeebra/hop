@@ -269,7 +269,7 @@ switch ($department) {
                     <option value="">--choose--</option>
                     <?php
                      $department = $_GET['dept'];
-                    $sql = "SELECT fullname FROM dues WHERE department='$department' ";
+                    $sql = "SELECT fullname FROM dues WHERE department='$department' GROUP BY fullname ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
@@ -291,7 +291,7 @@ switch ($department) {
                     <option value="">--choose--</option>
                     <?php
                     $department = $_GET['dept'];
-                    $sql = "SELECT * FROM dues  WHERE department='$department' GROUP BY member_id, fullname ";
+                    $sql = "SELECT * FROM dues  WHERE department='$department' GROUP BY member_id ";
                     $execute = mysqli_query($con, $sql);
                     if ($execute) {
                       while ($row = mysqli_fetch_array($execute)) {
