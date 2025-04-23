@@ -209,6 +209,12 @@
 
     <?php include_once("script.php") ?>
 
+    <script>
+    window.onload = function() {
+        window.print();
+    };
+   </script>
+
 </body>
 
 </html>
