@@ -54,7 +54,7 @@
     
     ?>
            
-            <p style="color:rgb(179, 179, 179);"><i class="fa fa-print"></i> <?php echo date('F d, Y'); ?></p>
+            <p style="color:rgb(179, 179, 179);">Generated on: <?php echo date('F d, Y'); ?></p>
         </div>
 
 
