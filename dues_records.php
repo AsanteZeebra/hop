@@ -263,14 +263,16 @@ $department = $_GET['dept'];
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h3 class="card-title">Dues Payment History</h3>
-                <a href="dues_statistics.php?idd=<?php echo $_GET['idd'] ?>&&memb=<?php echo $_GET['idd'] ?>&mid=<?php echo $_GET['mid'] ?>&dept=<?php echo $_GET['dept']; ?>" class="btn btn-warning btn-sm float-right">
+            <div class="card-header ">
+                <h3 class="card-title"><b>Dues Payment History</b></h3>
+                <a href="statement.php?mid=<?php echo $_GET['idd']; ?> & dept=<?php echo $_GET['dept']; ?>" class="btn btn-outline-success btn-sm mr-2 float-right" style="margin-left: 5px;">View tatement</a>
+                <a href="dues_statistics.php?idd=<?php echo $_GET['mid'] ?>&&memb=<?php echo $_GET['idd'] ?>&mid=<?php echo $_GET['mid'] ?>&dept=<?php echo $_GET['dept']; ?>" class="btn btn-outline-danger btn-sm float-right">
                     <i class="fa fa-line-chart"></i> Statistics
                 </a>
-                <button class="btn btn-light btn-sm float-right mr-2" data-toggle="modal" data-target="#atmodal">
+                <button class="btn btn-outline-primary btn-sm float-right mr-2" data-toggle="modal" data-target="#atmodal">
                     <i class="fa fa-plus"></i> Make Payment
                 </button>
+             
             </div>
             <div class="card-body">
                 <table class="table  table-hover text-center" id="example1">
@@ -282,7 +284,7 @@ $department = $_GET['dept'];
                             <th>Year</th>
                             <th>Month</th>
                             <th>Amount (¢)</th>
-                            <th>Date Paid</th>
+                            <th>Date </th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
