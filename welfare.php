@@ -203,11 +203,11 @@ if ($run) {
    
       
 
-      <div class="card shadow-sm">
+      <div class="card shadow-sm ">
         <div class="card-header bg-primary text-white">
           <h5 class="card-title mb-0">Top Contributors</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-auto" style="max-height: 500px;">
           <table class="table table-striped table-hover">
             <thead class="thead-light">
               <tr>
@@ -222,7 +222,7 @@ if ($run) {
               <?php
 
               $department = $_GET['dept'];
-              $sql = "SELECT COUNT(month) AS mnts, SUM(amount) AS amt, fullname, member_id, status FROM dues WHERE status ='Paid' AND department='$department' GROUP BY  member_id ORDER BY mnts DESC LIMIT 5";
+              $sql = "SELECT COUNT(month) AS mnts, SUM(amount) AS amt, fullname, member_id, status FROM dues WHERE status ='Paid' AND department='$department' GROUP BY  member_id ORDER BY mnts DESC";
               $run = mysqli_query($con, $sql);
               if ($run) {
                 while ($row = mysqli_fetch_assoc($run)) {
@@ -248,11 +248,11 @@ if ($run) {
     <div class="col-md-6">
 
    
-      <div class="card shadow-sm">
+      <div class="card shadow-sm ">
         <div class="card-header bg-danger text-white">
           <h5 class="card-title mb-0">Top Debtors</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-auto" style="max-height: 500px;">
           <table class="table table-striped table-hover">
             <thead class="thead-light">
               <tr>
@@ -266,7 +266,7 @@ if ($run) {
             <tbody>
               <?php
                 $department = $_GET['dept'];
-              $sql = "SELECT COUNT(month) AS mnts, SUM(amount) AS amt, fullname, member_id, status FROM dues WHERE status ='Unpaid' AND department='$department' GROUP BY member_id ORDER BY mnts DESC LIMIT 5 ";
+              $sql = "SELECT COUNT(month) AS mnts, SUM(amount) AS amt, fullname, member_id, status FROM dues WHERE status ='Unpaid' AND department='$department' GROUP BY member_id ORDER BY mnts DESC  ";
               $run = mysqli_query($con, $sql);
               if ($run) {
                 while ($row = mysqli_fetch_assoc($run)) {
