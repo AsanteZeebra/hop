@@ -2,10 +2,12 @@
 include_once('database_connection.php');
 
 // Check if POST data is set
-$idd = mysqli_real_escape_string($con, $_POST['idd']);
-    // Prepare the SQL statement to avoid SQL injection
-    $stmt = $con->prepare("DELETE FROM dues WHERE id = ? ");
-    $stmt->bind_param("s", $idd); // Bind parameters (s = string)
+if (isset($_POST['idd'])) {
+    $idd = (int) $_POST['idd']; // Cast to integer directly (safe)
+
+    // Prepare the SQL statement
+    $stmt = $con->prepare("DELETE FROM dues WHERE id = ?");
+    $stmt->bind_param("i", $idd); // 'i' for integer
 
     // Execute the statement and check for success
     if ($stmt->execute()) {
@@ -21,7 +23,9 @@ $idd = mysqli_real_escape_string($con, $_POST['idd']);
 
     // Close the statement
     $stmt->close();
-
+} else {
+    echo "Error: Missing ID.";
+}
 
 // Close the database connection
 $con->close();
