@@ -18,7 +18,10 @@
       console.log(data);
   
       // Set the values from the table row into form fields
-      $('.tfid').val(data[0]);
+    
+      $('.mmonth').val(data[4]);
+      $('.myear').val(data[3]);
+
     
     });
   
@@ -154,9 +157,11 @@ function delete_dues() {
   var fd = new FormData();
 
   // Collect form data
-  var id = $(".tfid").val();
+  var month = $(".mmonth").val();
+  var year = $(".myear").val();
 
-  fd.append("idd", id); // Change "odd" to "idd"
+  fd.append("month", month); // Change "odd" to "idd"
+  fd.append("year", year);
 
   $.ajax({
     url: "delete_dues.php",

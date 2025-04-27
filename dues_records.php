@@ -250,7 +250,9 @@ $department = $_GET['dept'];
                 </button>
             </div>
             <div class="modal-body text-center">
-                <input type="hidden" class="form-control tfid">
+               
+                <input type="hidden" class="form-control mmonth">
+                <input type="hidden" class="form-control myear">
                
                 <button class="btn btn-info" data-dismiss="modal">No</button>
                 <button class="btn btn-danger delbtn">Yes</button>
