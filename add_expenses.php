@@ -112,6 +112,9 @@ include_once('database_connection.php');
                           <option value="Telephone
 ">TEL505:Telephone
                           </option>
+                          <option value="Loan
+">LN025:Loan
+                          </option>
 
                           <option value="Travel_&_Transport
 ">T&T412: Travel & Transport
