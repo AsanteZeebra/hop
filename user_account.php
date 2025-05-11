@@ -60,7 +60,7 @@ include_once('load_session.php');
                     <div class="col-12">
                       <div class="form-group">
                         <label for="name">Fullname</label>
-                        <select class="form-control tfname select2bs4" name="fullname">
+                        <select class="form-control tfname select2" name="fullname">
                           <option value="">-Choose name-</option>
                           <?php
 
@@ -95,7 +95,7 @@ include_once('load_session.php');
                     <div class="col-12">
                       <div class="form-group">
                         <label for="name">Member ID</label>
-                        <select class="form-control tfmemid  select2bs4" name="memid">
+                        <select class="form-control tfmemid  select2" name="memid">
                           <option value="">-Choose ID-</option>
                           <?php
 
@@ -306,7 +306,7 @@ include_once('load_session.php');
 
 
 
-$sql = "SELECT * FROM activity_logs LIMIT 10 ORDER BY id DESC";
+$sql = "SELECT * FROM activity_logs LIMIT 10 ";
 $run = mysqli_query($con, $sql);
 if ($run) {
   while ($row = mysqli_fetch_assoc($run)) {
