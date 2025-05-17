@@ -17,7 +17,7 @@
         <div class="text-center mb-4" style="background-color: #212529; padding: 20px; border-radius: 5px;">
             <h1 class="text-white">Welfare Summary Report</h1>
             <h3 class="text-white">Tema Branch</h3>
-            <p class="text-white">Welfare Department</p>
+         
 
 <?php 
     $dep = $_GET['dept'];
