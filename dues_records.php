@@ -267,7 +267,7 @@ $department = $_GET['dept'];
         <div class="card">
             <div class="card-header ">
                 <h3 class="card-title"><b>Dues Payment History</b></h3>
-                <a href="statement.php?mid=<?php echo $_GET['idd']; ?> & dept=<?php echo $_GET['dept']; ?>" class="btn btn-outline-success btn-sm mr-2 float-right" style="margin-left: 5px;">View tatement</a>
+                <a href="statement.php?mid=<?php echo $_GET['idd']; ?> & dept=<?php echo $_GET['dept']; ?>" class="btn btn-outline-success btn-sm mr-2 float-right" style="margin-left: 5px;">View Statement</a>
                 <a href="dues_statistics.php?idd=<?php echo $_GET['mid'] ?>&&memb=<?php echo $_GET['idd'] ?>&mid=<?php echo $_GET['mid'] ?>&dept=<?php echo $_GET['dept']; ?>" class="btn btn-outline-danger btn-sm float-right">
                     <i class="fa fa-line-chart"></i> Statistics
                 </a>

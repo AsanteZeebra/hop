@@ -309,13 +309,7 @@ foreach ($query as $row) {
               </div>
               <!-- ./card-body -->
               <div class="card-footer">
-                <div class="row">
-
-                <a href="report_today_men.php?mid=<?php echo $_GET['mid']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Today's Report</a>
-               
-              
-              </div>
-                <!-- /.row -->
+                
               </div>
               <!-- /.card-footer -->
             </div>
