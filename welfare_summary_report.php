@@ -92,7 +92,7 @@
                 <tfoot>
 
                     <tr>
-                        <td colspan="3" class="text-right"></td>
+                        <td  class="text-right"></td>
                         <td colspan="3" class="text-right"><strong>Total:</strong></td>
                         <td colspan="2" style="font-size: 20px; font-weight: bold;">
                             <?php
