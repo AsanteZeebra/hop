@@ -21,49 +21,49 @@ include_once('database_connection.php');
   <div class="wrapper">
 
     <?php
-        $department = $_GET['dept'];
-        switch ($department) {
-            case 'Men':
-                include_once('navbar_men.php');
-                break;
-            case 'Women':
-                include_once('navbar_women.php');
-                break;
-            case 'Youth':
-                include_once('navbar_youth.php');
-                break;
-                   case 'Main':
-                    include_once('navbar.php');
-                    break;
-            default:
-                echo "No department specified";
-                break;
-        }
+    $department = $_GET['dept'];
+    switch ($department) {
+      case 'Men':
+        include_once('navbar_men.php');
+        break;
+      case 'Women':
+        include_once('navbar_women.php');
+        break;
+      case 'Youth':
+        include_once('navbar_youth.php');
+        break;
+      case 'Main':
+        include_once('navbar.php');
+        break;
+      default:
+        echo "No department specified";
+        break;
+    }
 
-        ?>
-        <!-- /.navbar -->
-        <?php
-        $department = $_GET['dept'];
+    ?>
+    <!-- /.navbar -->
+    <?php
+    $department = $_GET['dept'];
 
-        switch ($department) {
-            case 'Men':
-                include_once('mens_sidebar.php');
-                break;
-            case 'Women':
-                include_once('womens_sidebar.php');
-                break;
-            case 'Youth':
-                include_once('youth_sidebar.php');
-                break;
-                case 'Main':
-                    include_once('sidebar.php');
-                    break;
-            default:
-                echo "No department specified";
-                break;
-        }
+    switch ($department) {
+      case 'Men':
+        include_once('mens_sidebar.php');
+        break;
+      case 'Women':
+        include_once('womens_sidebar.php');
+        break;
+      case 'Youth':
+        include_once('youth_sidebar.php');
+        break;
+      case 'Main':
+        include_once('sidebar.php');
+        break;
+      default:
+        echo "No department specified";
+        break;
+    }
 
-        ?>
+    ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -162,8 +162,9 @@ include_once('database_connection.php');
 ">Wedding benefit
                           </option>
                           <option value="Cards
-">Cards
+">WC24:Cards
                           </option>
+                          <option value="Dues">Welfare Dues</option>
 
                         </select>
                       </div>
@@ -224,7 +225,7 @@ include_once('database_connection.php');
                       </div>
                     </div>
                     <div class="col-12" hidden>
-                         <input type="text" class="form-control tfdept" value="<?php echo $_GET['dept'] ?>">
+                      <input type="text" class="form-control tfdept" value="<?php echo $_GET['dept'] ?>">
                     </div>
                     <button type='submit' class="btn btn-success" style="width:100%">Add Expenses</button>
                   </div>
