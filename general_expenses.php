@@ -50,7 +50,7 @@ include_once('load_session.php');
           <div class="row justify-content-center mt-5">
             <!-- Create Button -->
             <div class="col-md-2 col-sm-6 col-12">
-              <a href="add_expenses.php?uid=<?php echo uniqid(); ?>&mid=<?php echo $_GET['mid']; ?>">
+              <a href="add_expenses.php?uid=<?php echo uniqid(); ?>&mid=<?php echo $_GET['mid']; ?> &&dept=<?php echo $_GET['dept']; ?>">
                 <div class="info-box bg-primary">
                   <span class="info-box-icon text-white"><i class="fa-solid fa-plus"></i></span>
                   <div class="info-box-content">
