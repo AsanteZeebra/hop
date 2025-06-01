@@ -17,12 +17,12 @@
         <div class="text-center mb-4" style="background-color: #212529; padding: 20px; border-radius: 5px;">
             <h1 class="text-white">Welfare Summary Report</h1>
             <h3 class="text-white">Tema Branch</h3>
-         
 
-<?php 
+
+<?php
     $dep = $_GET['dept'];
     switch ($dep) {
-        case 'Main':    
+        case 'Main':
        echo "<h5 style='color:rgb(179, 179, 179);'>General Welfare</h5>";
             break;
         case 'Men':
@@ -38,17 +38,17 @@
          echo "department not found";
             break;
     }
-    
-    
+
+
     ?>
-           
+
             <p style="color:rgb(179, 179, 179);">Generated on: <?php echo date('F d, Y'); ?></p>
         </div>
 
 
 
 
-     
+
         <!-- Table Section -->
         <div class="table-responsive">
             <table class="table ">
@@ -92,7 +92,7 @@
                 <tfoot>
 
                     <tr>
-                       
+
                         <td colspan="3" class="text-right"><strong>Total:</strong></td>
                         <td colspan="2" style="font-size: 20px; font-weight: bold;">
                             <?php
