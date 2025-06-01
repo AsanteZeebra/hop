@@ -10,7 +10,7 @@ $timestamp = date('Y-m-d_H-i-s');
 $backupFile = $backupDir . "/backup_$timestamp.sql";
 
 // Path to mysqldump executable
-$mysqldumpPath = 'C:\\wamp64\\bin\\mysql\\mysql9.1.0\\bin\\mysqldump'; // Replace with your actual path
+$mysqldumpPath = '/usr/local/bin/mysqldump'; // Replace with your actual path
 
 // Command to execute mysqldump
 $command = sprintf(
